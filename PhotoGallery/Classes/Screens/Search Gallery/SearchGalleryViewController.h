@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SearchGalleryViewController.h
 //  PhotoGallery
 //
 //  Created by Eugene on 6/25/16.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface SearchGalleryViewController : UIViewController
 
 
 @end

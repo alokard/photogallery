@@ -16,6 +16,7 @@
 		D61852BFBA97EE4C177830DD /* FlickrAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185081EFB8662997F97289 /* FlickrAPIService.m */; };
 		D61853A82E086C86E8BF79A9 /* FlickrAPIRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D618515EB7FBDC9AD114AACF /* FlickrAPIRequestSerializer.m */; };
 		D61854596ABF6D65433835C9 /* FlickrAPIErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185F7F7CC698612602E9F8 /* FlickrAPIErrorResponse.m */; };
+		D6185581D2FAC8E01E9AFD17 /* SearchGalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D618578DC64078539C84328F /* SearchGalleryViewController.m */; };
 		D618575204ED14AA5691114C /* BaseListFlickrAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D618575B3E34A7215FA45C5B /* BaseListFlickrAPIResponse.m */; };
 		D61857AA3E4C5EC57AD3CF60 /* PhotoSearchFlickrAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185876FDB355ED0B358A7E /* PhotoSearchFlickrAPIResponse.m */; };
 		D618587B1676F527FA4A55EB /* PhotoSearchFlickrAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185876FDB355ED0B358A7E /* PhotoSearchFlickrAPIResponse.m */; };
@@ -34,7 +35,6 @@
 		EF6A975D1D1E814F00C45871 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6A97501D1E814F00C45871 /* LaunchScreen.storyboard */; };
 		EF6A975E1D1E814F00C45871 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6A97521D1E814F00C45871 /* Main.storyboard */; };
 		EF6A975F1D1E814F00C45871 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6A97561D1E814F00C45871 /* AppDelegate.m */; };
-		EF6A97601D1E814F00C45871 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6A975A1D1E814F00C45871 /* ViewController.m */; };
 		EFE5583E1D1EABAB004868E7 /* Development-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFE5583D1D1EABAB004868E7 /* Development-Config.plist */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +66,7 @@
 		D618570B3CDDA00D8F921FC0 /* FlickrAPIErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIErrorResponse.h; sourceTree = "<group>"; };
 		D6185714BBD4CF0E0D68B716 /* ConfigurationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationProtocol.h; sourceTree = "<group>"; };
 		D618575B3E34A7215FA45C5B /* BaseListFlickrAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseListFlickrAPIResponse.m; sourceTree = "<group>"; };
+		D618578DC64078539C84328F /* SearchGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGalleryViewController.m; sourceTree = "<group>"; };
 		D61857AE011EDBE82F69A4F5 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		D618583737F8A2A83AC3F2EE /* FlickrAPIRequestSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIRequestSerializer.h; sourceTree = "<group>"; };
 		D618586C86EC1C8905C784C7 /* FlickrAPIServiceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPIServiceSpec.m; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		D6185C1EAA5CA2F965A0AB81 /* FlickrAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIService.h; sourceTree = "<group>"; };
 		D6185D3F8EA07A5C061F6893 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		D6185D5BEC09BD01E36F917A /* PhotoSearchResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PhotoSearchResponse.json; sourceTree = "<group>"; };
+		D6185E4A513BE50E9762640F /* SearchGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGalleryViewController.h; sourceTree = "<group>"; };
 		D6185F7F7CC698612602E9F8 /* FlickrAPIErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPIErrorResponse.m; sourceTree = "<group>"; };
 		EF6A97261D1E806600C45871 /* PhotoGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6A972A1D1E806600C45871 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -87,8 +89,6 @@
 		EF6A97531D1E814F00C45871 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF6A97551D1E814F00C45871 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EF6A97561D1E814F00C45871 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EF6A97591D1E814F00C45871 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EF6A975A1D1E814F00C45871 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EFE5583D1D1EABAB004868E7 /* Development-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Development-Config.plist"; sourceTree = "<group>"; };
 		F905EECF8D4E87318ECDC0DD /* libPods-PhotoGalleryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoGalleryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -154,6 +154,13 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
+		D61850E6C4429E022EEA678C /* Photo Details */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Photo Details";
+			sourceTree = "<group>";
+		};
 		D61851867A672193B0E4012B /* Error Response */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +203,15 @@
 				D6185D3F8EA07A5C061F6893 /* Photo.h */,
 			);
 			path = Photo;
+			sourceTree = "<group>";
+		};
+		D6185BC7086ED4A4D1918C1A /* Search Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				D618578DC64078539C84328F /* SearchGalleryViewController.m */,
+				D6185E4A513BE50E9762640F /* SearchGalleryViewController.h */,
+			);
+			path = "Search Gallery";
 			sourceTree = "<group>";
 		};
 		D6185CEA07230375ED6B7C04 /* Flickr API */ = {
@@ -307,8 +323,8 @@
 		EF6A97581D1E814F00C45871 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				EF6A97591D1E814F00C45871 /* ViewController.h */,
-				EF6A975A1D1E814F00C45871 /* ViewController.m */,
+				D61850E6C4429E022EEA678C /* Photo Details */,
+				D6185BC7086ED4A4D1918C1A /* Search Gallery */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -532,7 +548,6 @@
 			files = (
 				EF6A975F1D1E814F00C45871 /* AppDelegate.m in Sources */,
 				EF6A972B1D1E806600C45871 /* main.m in Sources */,
-				EF6A97601D1E814F00C45871 /* ViewController.m in Sources */,
 				D6185EEF6D1220D22C6A0719 /* FlickrAPIErrorResponse.m in Sources */,
 				D61859D5D6183C8E8EDB45B7 /* Configuration.m in Sources */,
 				D618507967505CF5150A677C /* ConfigurationKeys.m in Sources */,
@@ -541,6 +556,7 @@
 				D6185D5D73B368767814B9BD /* Photo.m in Sources */,
 				D6185882936B33A8A628D58B /* FlickrAPIService.m in Sources */,
 				D61853A82E086C86E8BF79A9 /* FlickrAPIRequestSerializer.m in Sources */,
+				D6185581D2FAC8E01E9AFD17 /* SearchGalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
