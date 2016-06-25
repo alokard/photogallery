@@ -11,12 +11,12 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return [[super JSONKeyPathsByPropertyKey] mtl_dictionaryByAddingEntriesFromDictionary:@{
-            @"photos" : @"photos.photo"
+            @"photos" : @"photo"
     }];
 }
 
-+ (NSValueTransformer *)zoomBottomRightLocationPointJSONTransformer {
-    return [MTLJSONAdapter dictionaryTransformerWithModelClass:[Photo class]];
++ (NSValueTransformer *)photosJSONTransformer {
+    return [MTLJSONAdapter arrayTransformerWithModelClass:[Photo class]];
 }
 
 @end

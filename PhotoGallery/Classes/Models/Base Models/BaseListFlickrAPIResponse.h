@@ -8,9 +8,9 @@
 
 @interface BaseListFlickrAPIResponse : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, readonly) NSInteger page;
-@property (nonatomic, readonly) NSInteger totalPages;
-@property (nonatomic, readonly) NSInteger itemsPerPage;
-@property (nonatomic, readonly) NSInteger totalItems;
+@property (nonatomic, readonly) NSNumber *page;
+@property (nonatomic, readonly) NSNumber *totalPages;
+@property (nonatomic, readonly) NSNumber *itemsPerPage;
+@property (nonatomic, readonly) NSNumber *totalItems;
 
 @end

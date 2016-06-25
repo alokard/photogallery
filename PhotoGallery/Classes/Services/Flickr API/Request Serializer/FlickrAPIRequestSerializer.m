@@ -5,6 +5,7 @@
 
 #import "FlickrAPIRequestSerializer.h"
 
+NSInteger const kFlickrAPIItemsPerPage = 100;
 
 @interface FlickrAPIRequestSerializer ()
 
@@ -30,7 +31,8 @@
         NSMutableDictionary *fullParameters = [@{
                 @"api_key" : self.apiKey,
                 @"format" : @"json",
-                @"nojsoncallback" : @1
+                @"nojsoncallback" : @1,
+                @"per_page" : @(kFlickrAPIItemsPerPage)
         } mutableCopy];
         [fullParameters addEntriesFromDictionary:(NSDictionary *)parameters];
         return [super requestWithMethod:method URLString:URLString parameters:fullParameters error:error];

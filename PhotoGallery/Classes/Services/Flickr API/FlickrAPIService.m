@@ -5,6 +5,8 @@
 
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <Overcoat/OVCHTTPSessionManager+ReactiveCocoa.h>
+#import <Overcoat/OVCResponse.h>
 #import "FlickrAPIService.h"
 #import "FlickrAPIErrorResponse.h"
 #import "Configuration.h"
@@ -13,14 +15,14 @@
 #import "FlickrAPIRequestSerializer.h"
 
 
-@interface FlickrAPIService ()
-
-@end
-
 @implementation FlickrAPIService
 
 + (Class)errorModelClass {
     return [FlickrAPIErrorResponse class];
+}
+
++ (NSDictionary *)modelClassesByResourcePath {
+    return @{};
 }
 
 #pragma mark - Initialization
@@ -42,11 +44,23 @@
 #pragma mark - FlickrAPI Protocol
 
 - (RACSignal *)searchPhotosWithText:(NSString *)searchText tagsOnly:(BOOL)tagsOnly {
-    return [[self rac_GET:@"" parameters:nil] map:^id(OVCResponse *response) {
+    NSParameterAssert(searchText);
+    if (searchText.length == 0) {
+        return [RACSignal return:nil];
+    }
+    NSDictionary *params = @{
+            @"text"     : searchText,
+            @"method"   : @"flickr.photos.search"
+    };
+    return [[self rac_GET:@"" parameters:params] map:^id(OVCResponse *response) {
         NSDictionary *responseDict = response.result;
+        NSError *error = nil;
         PhotoSearchFlickrAPIResponse *result = [MTLJSONAdapter modelOfClass:[PhotoSearchFlickrAPIResponse class]
                                                          fromJSONDictionary:responseDict[@"photos"]
-                                                                      error:nil];
+                                                                      error:&error];
+        if (error) {
+            NSLog(@"%@", error);
+        }
         return result;
     }];
 }

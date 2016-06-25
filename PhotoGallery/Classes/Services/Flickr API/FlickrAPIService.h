@@ -3,10 +3,14 @@
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
-#import "Overcoat.h"
+#import <Overcoat/OVCHTTPSessionManager.h>
 #import "FlickrAPI.h"
+
+@protocol ConfigurationProtocol;
 
 
 @interface FlickrAPIService : OVCHTTPSessionManager <FlickrAPI>
+
+- (instancetype)initWithConfiguration:(id <ConfigurationProtocol>)configuration;
 
 @end

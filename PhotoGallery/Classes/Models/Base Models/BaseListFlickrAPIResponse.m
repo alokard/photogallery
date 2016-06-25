@@ -17,4 +17,23 @@
     };
 }
 
++ (NSValueTransformer *)totalPagesJSONTransformer {
+    return [self stringToNumberTransformer];
+}
+
++ (NSValueTransformer *)totalItemsJSONTransformer {
+    return [self stringToNumberTransformer];
+}
+
++ (NSValueTransformer *)stringToNumberTransformer {
+    return [MTLValueTransformer transformerUsingForwardBlock:^id(id value, BOOL *success, NSError *__autoreleasing *error) {
+        if ([value isKindOfClass:[NSNumber class]]) {
+            return value;
+        }
+        return @([value integerValue]);
+    } reverseBlock:^id(NSNumber *value, BOOL *success, NSError *__autoreleasing *error) {
+        return value;
+    }];
+}
+
 @end
