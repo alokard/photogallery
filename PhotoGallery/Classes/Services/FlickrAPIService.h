@@ -4,8 +4,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Overcoat/OVCHTTPSessionManager.h>
 #import "FlickrAPI.h"
 
-@interface FlickrAPIService : NSObject <FlickrAPI>
+
+@interface FlickrAPIService : OVCHTTPSessionManager <FlickrAPI>
 
 @end
