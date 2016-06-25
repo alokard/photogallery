@@ -28,8 +28,8 @@
 }
 
 - (NSURL *)photoURLWithSize:(NSString *)size {
-    NSString *path = [NSString stringWithFormat:@"https://farm%d.staticflickr.com/%@/%@_%@_%@.jpg",
-                                                self.farm, self.server, self.photoId, self.secret, size];
+    NSString *path = [NSString stringWithFormat:@"https://farm%li.staticflickr.com/%@/%@_%@_%@.jpg",
+                    (long)self.farm, self.server, self.photoId, self.secret, size];
     return [NSURL URLWithString:path];
 }
 
