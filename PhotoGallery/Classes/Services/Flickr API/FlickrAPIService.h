@@ -3,8 +3,7 @@
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <Overcoat/OVCHTTPSessionManager.h>
+#import "Overcoat.h"
 #import "FlickrAPI.h"
 
 

@@ -3,18 +3,17 @@
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
-#import <Overcoat/Overcoat.h>
+
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "FlickrAPIService.h"
 #import "FlickrAPIErrorResponse.h"
 #import "Configuration.h"
 #import "ConfigurationKeys.h"
 #import "PhotoSearchFlickrAPIResponse.h"
+#import "FlickrAPIRequestSerializer.h"
 
 
 @interface FlickrAPIService ()
-
-@property(nonatomic, strong) NSString *apiKey;
 
 @end
 
@@ -34,9 +33,8 @@
     NSURL *url = [NSURL URLWithString:[configuration settingForKey:ConfigurationKeys.baseURLString]];
     self = [super initWithBaseURL:url sessionConfiguration:nil];
     if (self) {
-        self.apiKey = [configuration settingForKey:ConfigurationKeys.apiKey];
-        self.requestSerializer = [AFJSONRequestSerializer serializer];
-        self.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithObjects:@"GET", @"HEAD", nil];
+        NSString *apiKey = [configuration settingForKey:ConfigurationKeys.apiKey];
+        self.requestSerializer = [FlickrAPIRequestSerializer serializerWithAPIKey:apiKey];
     }
     return self;
 }
@@ -51,7 +49,6 @@
                                                                       error:nil];
         return result;
     }];
-
 }
 
 @end
