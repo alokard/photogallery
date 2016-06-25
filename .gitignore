@@ -13,6 +13,15 @@ build/*
 *.xcworkspace
 xcuserdata
 
-# svn & cvs
-.svn
-CVS
+#Idea
+.idea/
+.idea
+
+#Build and analyze tools
+build/*
+build.output/*
+pkg/*
+cpd-output.*
+report.html
+.rvmrc
+.rvm/*
