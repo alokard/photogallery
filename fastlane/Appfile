@@ -1,0 +1,4 @@
+app_identifier "com.tulusha.PhotoGallery" # The bundle identifier of your app
+apple_id "tulusheg@gmail.com" # Your Apple email address
+
+team_id "EEJA65ZWYD"  # Developer Portal Team ID
