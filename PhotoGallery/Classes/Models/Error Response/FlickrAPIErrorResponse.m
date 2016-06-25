@@ -7,7 +7,12 @@
 
 
 @implementation FlickrAPIErrorResponse
-{
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+            @"errorMessage" : @"message",
+            @"errorCode" : @"code"
+    };
 }
+
 @end
