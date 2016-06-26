@@ -8,6 +8,8 @@
 #import "SearchGalleryViewModel.h"
 #import "SearchAPIService.h"
 #import "ConfigurationProtocol.h"
+#import "PhotoDetailsViewController.h"
+#import "PhotoDetailsTransitionController.h"
 
 
 @interface MainNaviagationRouter ()
@@ -44,11 +46,14 @@
 }
 
 - (void)showPhotoDetails {
-
+    PhotoDetailsViewController *photosViewController = [[PhotoDetailsViewController alloc] initWithViewModel:nil];
+    [self.navigationController presentViewController:photosViewController animated:YES completion:nil];
 }
 
 - (void)dismissDetails {
-
+    if (self.navigationController.presentedViewController) {
+        [self.navigationController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 
