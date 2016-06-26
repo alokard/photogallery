@@ -10,6 +10,7 @@ target :PhotoGallery, :exclusive => true do
 	shared_pods
 
 	pod 'PINRemoteImage'
+	pod 'Masonry'
 end
 
 target :PhotoGalleryTests, :exclusive => true do

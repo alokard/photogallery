@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class RACCommand;
+
 @interface SearchGalleryViewController : UIViewController
 
 

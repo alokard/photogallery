@@ -15,6 +15,7 @@ PODS:
   - Mantle (2.0.7):
     - Mantle/extobjc (= 2.0.7)
   - Mantle/extobjc (2.0.7)
+  - Masonry (1.0.1)
   - OHHTTPStubs (5.1.0):
     - OHHTTPStubs/Default (= 5.1.0)
   - OHHTTPStubs/Core (5.1.0)
@@ -65,6 +66,7 @@ PODS:
 
 DEPENDENCIES:
   - Kiwi
+  - Masonry
   - OHHTTPStubs
   - Overcoat/ReactiveCocoa
   - PINRemoteImage
@@ -74,6 +76,7 @@ SPEC CHECKSUMS:
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
+  Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   OHHTTPStubs: 592f74439d2d72615115cf99a954237a3fbe26e5
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
   PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
