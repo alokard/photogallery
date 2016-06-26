@@ -40,7 +40,6 @@ void pgES_swizzle(Class c, SEL orig, SEL new) {
     objc_setAssociatedObject(self, kEmptyStateView, view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-
 #pragma mark - Updating
 
 - (void)pgES_updateEmptyView {
@@ -96,9 +95,9 @@ void pgES_swizzle(Class c, SEL orig, SEL new) {
 #pragma mark - Swizzling
 
 - (void)pgES_reloadData {
-    [self pgES_reloadData];
-
     [self pgES_updateEmptyView];
+
+    [self pgES_reloadData];
 }
 
 @end

@@ -1,21 +1,19 @@
 #import <Foundation/Foundation.h>
 #import <Kiwi/Kiwi.h>
-#import "FlickrAPIService.h"
+#import "SearchAPIService.h"
 #import "ConfigurationProtocol.h"
 #import "ConfigurationKeys.h"
 #import "FlickrAPIRequestSerializer.h"
 #import "OHHTTPStubs.h"
 #import "OHPathHelpers.h"
 #import "RACSignal.h"
-#import "RACSignal+Operations.h"
-#import "RACMulticastConnection.h"
 #import "PhotoSearchFlickrAPIResponse.h"
 #import "Photo.h"
 
-SPEC_BEGIN(FlickrAPIServiceSpec)
+SPEC_BEGIN(SearchAPIServiceSpec)
 
-describe(@"FlickrAPIService", ^{
-    __block FlickrAPIService *sut;
+describe(@"SearchAPIService", ^{
+    __block SearchAPIService *sut;
 
     beforeEach(^{
         KWMock <ConfigurationProtocol> *configurationMock = (KWMock <ConfigurationProtocol> *) [KWMock mockForProtocol:@protocol(ConfigurationProtocol)];
@@ -23,7 +21,7 @@ describe(@"FlickrAPIService", ^{
             return [params firstObject];
         }];
 
-        sut = [[FlickrAPIService alloc] initWithConfiguration:configurationMock];
+        sut = [[SearchAPIService alloc] initWithConfiguration:configurationMock];
     });
 
     it(@"should init correctly", ^{

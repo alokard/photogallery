@@ -7,7 +7,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Overcoat/OVCHTTPSessionManager+ReactiveCocoa.h>
 #import <Overcoat/OVCResponse.h>
-#import "FlickrAPIService.h"
+#import "SearchAPIService.h"
 #import "FlickrAPIErrorResponse.h"
 #import "Configuration.h"
 #import "ConfigurationKeys.h"
@@ -15,7 +15,7 @@
 #import "FlickrAPIRequestSerializer.h"
 
 
-@implementation FlickrAPIService
+@implementation SearchAPIService
 
 + (Class)errorModelClass {
     return [FlickrAPIErrorResponse class];

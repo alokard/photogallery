@@ -4,12 +4,12 @@
 //
 
 #import <Overcoat/OVCHTTPSessionManager.h>
-#import "FlickrAPI.h"
+#import "SearchAPI.h"
 
 @protocol ConfigurationProtocol;
 
 
-@interface FlickrAPIService : OVCHTTPSessionManager <FlickrAPI>
+@interface SearchAPIService : OVCHTTPSessionManager <SearchAPI>
 
 - (instancetype)initWithConfiguration:(id <ConfigurationProtocol>)configuration;
 

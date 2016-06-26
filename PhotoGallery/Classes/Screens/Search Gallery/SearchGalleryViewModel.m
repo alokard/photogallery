@@ -7,7 +7,7 @@
 
 #import "SearchGalleryViewModel.h"
 #import "CollectionStorage.h"
-#import "FlickrAPI.h"
+#import "SearchAPI.h"
 #import "CollectionStorageProtocol.h"
 #import "PhotoSearchFlickrAPIResponse.h"
 #import "PhotoCellViewModel.h"
@@ -16,7 +16,7 @@
 @interface SearchGalleryViewModel ()
 
 @property (nonatomic, weak) id<MainRouting> router;
-@property (nonatomic, strong) id<FlickrAPI> searchService;
+@property (nonatomic, strong) id<SearchAPI> searchService;
 
 @property (nonatomic, strong) CollectionStorage *storage;
 @property (nonatomic, strong) RACCommand *reloadCommand;
@@ -27,7 +27,7 @@
 
 @implementation SearchGalleryViewModel
 
-- (instancetype)initWithRouter:(id<MainRouting>)router searchService:(id<FlickrAPI>)searchService {
+- (instancetype)initWithRouter:(id<MainRouting>)router searchService:(id<SearchAPI>)searchService {
     if (self = [super init]) {
         self.storage = [CollectionStorage new];
         self.searchService = searchService;
@@ -71,12 +71,7 @@
     RACSequence *cellViewModels = [photos.rac_sequence map:^PhotoCellViewModel *(Photo *photo) {
         return [[PhotoCellViewModel alloc] initWithPhoto:photo];
     }];
-    if (self.storage.numberOfItems > 0) {
-        [self.storage appendItems:cellViewModels.array];
-    }
-    else {
-        [self.storage resetItems:cellViewModels.array];
-    }
+    [self.storage resetItems:cellViewModels.array];
 }
 
 #pragma mark - Collection Selectable

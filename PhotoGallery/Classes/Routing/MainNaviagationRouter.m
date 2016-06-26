@@ -6,7 +6,7 @@
 #import "MainNaviagationRouter.h"
 #import "SearchGalleryViewController.h"
 #import "SearchGalleryViewModel.h"
-#import "FlickrAPIService.h"
+#import "SearchAPIService.h"
 #import "ConfigurationProtocol.h"
 
 
@@ -36,7 +36,7 @@
         return;
     }
 
-    FlickrAPIService *apiService = [[FlickrAPIService alloc] initWithConfiguration:self.configuration];
+    SearchAPIService *apiService = [[SearchAPIService alloc] initWithConfiguration:self.configuration];
     SearchGalleryViewModel *viewModel = [[SearchGalleryViewModel alloc] initWithRouter:self
                                                                          searchService:apiService];
     SearchGalleryViewController *viewController = [[SearchGalleryViewController alloc] initWithViewModel:viewModel];

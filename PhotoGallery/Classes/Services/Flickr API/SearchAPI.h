@@ -7,7 +7,7 @@
 
 @class RACSignal;
 
-@protocol FlickrAPI <NSObject>
+@protocol SearchAPI <NSObject>
 
 - (RACSignal *)searchPhotosWithText:(NSString *)searchText tagsOnly:(BOOL)tagsOnly;
 

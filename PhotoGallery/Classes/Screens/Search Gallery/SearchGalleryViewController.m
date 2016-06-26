@@ -122,6 +122,7 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 
 - (void)setupCollectionViewEmptyState {
     UILabel *label = [[UILabel alloc] init];
+    label.backgroundColor = [UIColor pg_lightBackgroundColor];
     label.text = @"Start searching...";
     label.textAlignment = NSTextAlignmentCenter;
     self.collectionView.pg_emptyStateView = label;

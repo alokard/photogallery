@@ -9,7 +9,7 @@
 #import "MainRouting.h"
 
 @class RACCommand;
-@protocol FlickrAPI;
+@protocol SearchAPI;
 
 
 @interface SearchGalleryViewModel : NSObject <CollectionSelectable>
@@ -21,6 +21,6 @@
 
 @property (nonatomic, readonly) RACCommand *reloadCommand;
 
-- (instancetype)initWithRouter:(id<MainRouting>)router searchService:(id <FlickrAPI>)searchService;
+- (instancetype)initWithRouter:(id<MainRouting>)router searchService:(id <SearchAPI>)searchService;
 
 @end
