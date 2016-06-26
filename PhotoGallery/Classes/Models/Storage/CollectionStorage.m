@@ -43,7 +43,12 @@
 }
 
 - (void)resetItems:(NSArray *)items {
-    self.items = [items mutableCopy];
+    if (items) {
+        self.items = [items mutableCopy];
+    }
+    else {
+        self.items = [NSMutableArray new];
+    }
     [self reloadData];
 }
 

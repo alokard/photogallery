@@ -38,6 +38,11 @@
     return self;
 }
 
+- (void)prepareForReuse {
+    [self.imageView pin_cancelImageDownload];
+    self.imageView.image = nil;
+}
+
 - (void)updateWithViewModel:(PhotoCellViewModel *)model {
     NSParameterAssert([model isKindOfClass:[PhotoCellViewModel class]]);
     [self.imageView pin_setImageFromURL:model.photoURL];

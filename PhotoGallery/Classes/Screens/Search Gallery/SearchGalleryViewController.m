@@ -6,15 +6,16 @@
 //  Copyright © 2016 Tulusha.com. All rights reserved.
 //
 
+
 #import "SearchGalleryViewController.h"
 #import "AutoUpdatingLayout.h"
 #import "DefaultCollectionViewDataSource.h"
-#import "RACCommand.h"
 #import "DefaultCollectionViewDelegate.h"
 #import "SearchGalleryViewModel.h"
-#import "UIRefreshControl+RACCommandSupport.h"
-#import "SearchGalleryViewModel.h"
 #import "PhotoViewCell.h"
+
+#import "RACCommand.h"
+#import "UIRefreshControl+RACCommandSupport.h"
 #import "UIColor+PhotoGallery.h"
 #import "UICollectionView+EmptyState.h"
 
@@ -79,11 +80,15 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 
         _searchController = [[UISearchController alloc] initWithSearchResultsController:resultsController];
         _searchController.searchResultsUpdater = self;
+        [_searchController.searchBar sizeToFit];
         _searchController.dimsBackgroundDuringPresentation = YES;
         _searchController.hidesNavigationBarDuringPresentation = NO;
 
         UISearchBar *searchBar = _searchController.searchBar;
-        searchBar.placeholder = @"Search...";
+        searchBar.searchBarStyle = UISearchBarStyleMinimal;
+        searchBar.tintColor = [UIColor whiteColor];
+        [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        searchBar.placeholder = @"";
         searchBar.clipsToBounds = NO;
         searchBar.delegate = self;
     }
@@ -131,6 +136,10 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 #pragma mark - SearchBar delegate
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    if (searchBar.text.length > 0) {
+        // This avoids the text being stretched by the UISearchBar.
+        [searchBar setShowsCancelButton:YES animated:YES];
+    }
     return YES;
 }
 
@@ -139,7 +148,8 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-
+    NSString *searchText = searchBar.text;
+    NSLog(@"SearchBar text: %@", searchText);
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -150,18 +160,21 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
     NSString *searchText = searchBar.text;
     [self.searchController setActive:NO];
     self.searchBar.text = searchText;
-
-    //TODO: start searching
+    self.viewModel.searchText = searchText;
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-
+    //Added delay for UISearchController specific animations
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.searchBar.text = self.viewModel.searchText;
+    });
 }
 
 #pragma mark - SearchResultsUpdater
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     //TODO: update auto suggestion controller with new search text
+    NSLog(@"Update auto suggestion");
 }
 
 

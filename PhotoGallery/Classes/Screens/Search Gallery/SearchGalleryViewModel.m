@@ -10,6 +10,7 @@
 #import "FlickrAPI.h"
 #import "CollectionStorageProtocol.h"
 #import "PhotoSearchFlickrAPIResponse.h"
+#import "PhotoCellViewModel.h"
 
 
 @interface SearchGalleryViewModel ()
@@ -33,6 +34,16 @@
         self.router = router;
 
         [self setupCommands];
+        @weakify(self);
+        [[RACObserve(self, searchText) distinctUntilChanged] subscribeNext:^(NSString *search) {
+            @strongify(self);
+            if (search.length > 0) {
+                [self.reloadCommand execute:nil];
+            }
+            else {
+                [self.storage resetItems:nil];
+            }
+        }];
     }
     return self;
 }
@@ -49,11 +60,23 @@
     @weakify(self);
     return [[[self.searchService searchPhotosWithText:self.searchText tagsOnly:NO] doNext:^(PhotoSearchFlickrAPIResponse *response) {
         @strongify(self);
-        self.storage.
+        [self updateStorageWithPhotos:response.photos];
     }] doError:^(NSError *error) {
         @strongify(self);
         self.errorMessage = error.localizedDescription;
     }];
+}
+
+- (void)updateStorageWithPhotos:(NSArray<Photo *> *)photos {
+    RACSequence *cellViewModels = [photos.rac_sequence map:^PhotoCellViewModel *(Photo *photo) {
+        return [[PhotoCellViewModel alloc] initWithPhoto:photo];
+    }];
+    if (self.storage.numberOfItems > 0) {
+        [self.storage appendItems:cellViewModels.array];
+    }
+    else {
+        [self.storage resetItems:cellViewModels.array];
+    }
 }
 
 #pragma mark - Collection Selectable
