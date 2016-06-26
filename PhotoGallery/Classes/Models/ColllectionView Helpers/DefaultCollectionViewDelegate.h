@@ -5,7 +5,10 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CollectionSelectable;
 
 @interface DefaultCollectionViewDelegate : NSObject <UICollectionViewDelegate>
+
+- (instancetype)initWithViewModel:(id <CollectionSelectable>)viewModel;
 
 @end

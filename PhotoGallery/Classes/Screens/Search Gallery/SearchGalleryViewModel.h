@@ -5,12 +5,14 @@
 
 #import <Foundation/Foundation.h>
 #import "CollectionStorage.h"
+#import "CollectionSelectable.h"
+#import "MainRouting.h"
 
 @class RACCommand;
 @protocol FlickrAPI;
 
 
-@interface SearchGalleryViewModel : NSObject
+@interface SearchGalleryViewModel : NSObject <CollectionSelectable>
 
 @property (nonatomic, strong) NSString *searchText;
 @property (nonatomic, readonly) NSString *errorMessage;
@@ -19,5 +21,6 @@
 
 @property (nonatomic, readonly) RACCommand *reloadCommand;
 
-- (instancetype)initWithRouter:(id)router searchService:(id <FlickrAPI>)searchService;
+- (instancetype)initWithRouter:(id<MainRouting>)router searchService:(id <FlickrAPI>)searchService;
+
 @end

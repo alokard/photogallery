@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0BD029EFEBB395A5FFCD8070 /* libPods-PhotoGallery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DD3BED009008E65A790C27 /* libPods-PhotoGallery.a */; };
 		D53F974AB711D2684B730BF2 /* libPods-PhotoGalleryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F905EECF8D4E87318ECDC0DD /* libPods-PhotoGalleryTests.a */; };
+		D618504C0361185337A87CB3 /* UIColor+PhotoGallery.m in Sources */ = {isa = PBXBuildFile; fileRef = D61853D8935DC5345E010985 /* UIColor+PhotoGallery.m */; };
 		D618504FCC8F63F7FB3E68A2 /* FlickrAPIServiceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = D618586C86EC1C8905C784C7 /* FlickrAPIServiceSpec.m */; };
 		D618507967505CF5150A677C /* ConfigurationKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185B540DF8FF22598D0536 /* ConfigurationKeys.m */; };
 		D618519F2A595B901E00CB5D /* FlickrAPIRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D618515EB7FBDC9AD114AACF /* FlickrAPIRequestSerializer.m */; };
@@ -33,6 +34,7 @@
 		D6185AEE265EA0E309FA7E73 /* DefaultCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D61858D680CDC2CA2CD9333E /* DefaultCollectionViewDataSource.m */; };
 		D6185B00099111CA57C86504 /* ErrorResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D6185213DF6861B76305BE8A /* ErrorResponse.json */; };
 		D6185CE01E08D750031F5243 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = D618594B9F587E05A3771E26 /* Configuration.m */; };
+		D6185CE6E32748ADC10C070A /* UICollectionView+EmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185AA1AB079069CCB83A1A /* UICollectionView+EmptyState.m */; };
 		D6185D536BBEDD9F96D5B098 /* BaseListFlickrAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D61856CCA4C2C29A8F549AE3 /* BaseListFlickrAPIResponse.m */; };
 		D6185E6A1B151D62C1B28A2F /* PhotoSearchFlickrAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D61853E800C41D40FCFAAFC5 /* PhotoSearchFlickrAPIResponse.m */; };
 		D6185EDAF888704D3B8B1A31 /* JSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D618532ABBB2F7AF5C3708E6 /* JSONLoader.m */; };
@@ -41,7 +43,6 @@
 		EF6A972B1D1E806600C45871 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6A972A1D1E806600C45871 /* main.m */; };
 		EF6A975C1D1E814F00C45871 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6A974F1D1E814F00C45871 /* Assets.xcassets */; };
 		EF6A975D1D1E814F00C45871 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6A97501D1E814F00C45871 /* LaunchScreen.storyboard */; };
-		EF6A975E1D1E814F00C45871 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6A97521D1E814F00C45871 /* Main.storyboard */; };
 		EF6A975F1D1E814F00C45871 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6A97561D1E814F00C45871 /* AppDelegate.m */; };
 		EFE5583E1D1EABAB004868E7 /* Development-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = EFE5583D1D1EABAB004868E7 /* Development-Config.plist */; };
 /* End PBXBuildFile section */
@@ -65,12 +66,14 @@
 		D618502AC7678390F4EE22B0 /* AutoUpdatingLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoUpdatingLayout.h; sourceTree = "<group>"; };
 		D6185031AA07C4982F1A7A9A /* ConfigurationKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationKeys.h; sourceTree = "<group>"; };
 		D6185081EFB8662997F97289 /* FlickrAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPIService.m; sourceTree = "<group>"; };
+		D61851046CFC96401C92ABF9 /* UIColor+PhotoGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+PhotoGallery.h"; sourceTree = "<group>"; };
 		D6185146F59D6FD453F61C4E /* MainNaviagationRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainNaviagationRouter.m; sourceTree = "<group>"; };
 		D618515EB7FBDC9AD114AACF /* FlickrAPIRequestSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPIRequestSerializer.m; sourceTree = "<group>"; };
 		D61851829BF978E9188CC8CB /* PhotoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewCell.h; sourceTree = "<group>"; };
 		D61851AD45C53383B64AD628 /* MainNaviagationRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainNaviagationRouter.h; sourceTree = "<group>"; };
 		D6185213DF6861B76305BE8A /* ErrorResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ErrorResponse.json; sourceTree = "<group>"; };
 		D618532ABBB2F7AF5C3708E6 /* JSONLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONLoader.m; sourceTree = "<group>"; };
+		D61853D8935DC5345E010985 /* UIColor+PhotoGallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+PhotoGallery.m"; sourceTree = "<group>"; };
 		D61853E800C41D40FCFAAFC5 /* PhotoSearchFlickrAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSearchFlickrAPIResponse.m; sourceTree = "<group>"; };
 		D6185495DA2EC4CFDEE80784 /* DefaultCollectionViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultCollectionViewDelegate.m; sourceTree = "<group>"; };
 		D618550157F866AAFDA4DF24 /* DefaultCollectionViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultCollectionViewDelegate.h; sourceTree = "<group>"; };
@@ -79,6 +82,7 @@
 		D61856CCA4C2C29A8F549AE3 /* BaseListFlickrAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseListFlickrAPIResponse.m; sourceTree = "<group>"; };
 		D61856F5A0863619772383AE /* CollectionStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionStorage.m; sourceTree = "<group>"; };
 		D6185714BBD4CF0E0D68B716 /* ConfigurationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationProtocol.h; sourceTree = "<group>"; };
+		D6185724BD8C4648633AE677 /* MainRouting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainRouting.h; sourceTree = "<group>"; };
 		D618578DC64078539C84328F /* SearchGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGalleryViewController.m; sourceTree = "<group>"; };
 		D61857AD52306167874A0E2E /* PhotoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewCell.m; sourceTree = "<group>"; };
 		D61857AE011EDBE82F69A4F5 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
@@ -92,11 +96,13 @@
 		D61858ECE7A0EB1F83022328 /* SearchGalleryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGalleryViewModel.h; sourceTree = "<group>"; };
 		D618594B9F587E05A3771E26 /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
 		D6185998EF8D3C15AFCFF411 /* JSONLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONLoader.h; sourceTree = "<group>"; };
+		D6185AA1AB079069CCB83A1A /* UICollectionView+EmptyState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+EmptyState.m"; sourceTree = "<group>"; };
 		D6185B540DF8FF22598D0536 /* ConfigurationKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationKeys.m; sourceTree = "<group>"; };
 		D6185C1EAA5CA2F965A0AB81 /* FlickrAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIService.h; sourceTree = "<group>"; };
 		D6185C3203C2B523140ED5A4 /* PhotoCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCellViewModel.h; sourceTree = "<group>"; };
 		D6185C359FF2F5323EC846C6 /* DefaultCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultCollectionViewDataSource.h; sourceTree = "<group>"; };
 		D6185C5F87D8EBD75A8EFA2E /* FlickrAPIErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPIErrorResponse.m; sourceTree = "<group>"; };
+		D6185C6D4782D42E582C9E08 /* CollectionSelectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionSelectable.h; sourceTree = "<group>"; };
 		D6185C806FD4FE4609E54F95 /* CollectionStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionStorage.h; sourceTree = "<group>"; };
 		D6185D5BEC09BD01E36F917A /* PhotoSearchResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PhotoSearchResponse.json; sourceTree = "<group>"; };
 		D6185D616279B44C77E3EEFE /* CollectionStorageProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionStorageProtocol.h; sourceTree = "<group>"; };
@@ -104,6 +110,7 @@
 		D6185E193B3602386E2A9A43 /* PhotoCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCellViewModel.m; sourceTree = "<group>"; };
 		D6185E4A513BE50E9762640F /* SearchGalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGalleryViewController.h; sourceTree = "<group>"; };
 		D6185F086E9D85ED0445FFBA /* PhotoSearchFlickrAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSearchFlickrAPIResponse.h; sourceTree = "<group>"; };
+		D6185F8EDAB27A3E4FB4C9D1 /* UICollectionView+EmptyState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+EmptyState.h"; sourceTree = "<group>"; };
 		D6185FF597A68CA13285FFD2 /* FlickrAPIErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIErrorResponse.h; sourceTree = "<group>"; };
 		EF6A97261D1E806600C45871 /* PhotoGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6A972A1D1E806600C45871 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,7 +119,6 @@
 		EF6A97451D1E806600C45871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF6A974F1D1E814F00C45871 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF6A97511D1E814F00C45871 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EF6A97531D1E814F00C45871 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF6A97551D1E814F00C45871 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EF6A97561D1E814F00C45871 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		EFE5583D1D1EABAB004868E7 /* Development-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Development-Config.plist"; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				D61858D680CDC2CA2CD9333E /* DefaultCollectionViewDataSource.m */,
 				D6185495DA2EC4CFDEE80784 /* DefaultCollectionViewDelegate.m */,
 				D6185C359FF2F5323EC846C6 /* DefaultCollectionViewDataSource.h */,
+				D6185C6D4782D42E582C9E08 /* CollectionSelectable.h */,
 			);
 			path = "ColllectionView Helpers";
 			sourceTree = "<group>";
@@ -248,6 +255,7 @@
 			children = (
 				D6185146F59D6FD453F61C4E /* MainNaviagationRouter.m */,
 				D61851AD45C53383B64AD628 /* MainNaviagationRouter.h */,
+				D6185724BD8C4648633AE677 /* MainRouting.h */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -258,6 +266,10 @@
 				D6185824E055ECE7DECD50DE /* AutoUpdatingLayout.m */,
 				D618502AC7678390F4EE22B0 /* AutoUpdatingLayout.h */,
 				D618580A9F1C8BC57E1EF972 /* DefaultCellProtocol.h */,
+				D61853D8935DC5345E010985 /* UIColor+PhotoGallery.m */,
+				D61851046CFC96401C92ABF9 /* UIColor+PhotoGallery.h */,
+				D6185AA1AB079069CCB83A1A /* UICollectionView+EmptyState.m */,
+				D6185F8EDAB27A3E4FB4C9D1 /* UICollectionView+EmptyState.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -374,7 +386,6 @@
 				EFE5583C1D1EABAB004868E7 /* Configurations */,
 				EF6A974F1D1E814F00C45871 /* Assets.xcassets */,
 				EF6A97501D1E814F00C45871 /* LaunchScreen.storyboard */,
-				EF6A97521D1E814F00C45871 /* Main.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -516,7 +527,6 @@
 			files = (
 				EFE5583E1D1EABAB004868E7 /* Development-Config.plist in Resources */,
 				EF6A975C1D1E814F00C45871 /* Assets.xcassets in Resources */,
-				EF6A975E1D1E814F00C45871 /* Main.storyboard in Resources */,
 				EF6A975D1D1E814F00C45871 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +659,8 @@
 				D6185A6FD60971ADC4BCE4C4 /* Photo.m in Sources */,
 				D6185224ED47EAC2C0F47605 /* FlickrAPIErrorResponse.m in Sources */,
 				D61856EA30B7D9A74981C209 /* MainNaviagationRouter.m in Sources */,
+				D618504C0361185337A87CB3 /* UIColor+PhotoGallery.m in Sources */,
+				D6185CE6E32748ADC10C070A /* UICollectionView+EmptyState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,14 +698,6 @@
 				EF6A97511D1E814F00C45871 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		EF6A97521D1E814F00C45871 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EF6A97531D1E814F00C45871 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

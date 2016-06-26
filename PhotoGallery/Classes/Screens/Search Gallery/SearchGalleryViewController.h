@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class RACCommand;
+@class SearchGalleryViewModel;
 
 @interface SearchGalleryViewController : UIViewController
 
+- (instancetype)initWithViewModel:(SearchGalleryViewModel *)viewModel;
 
 @end
 

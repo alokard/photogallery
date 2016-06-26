@@ -7,8 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "MainNaviagationRouter.h"
+#import "Configuration.h"
+#import "UIColor+PhotoGallery.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) UINavigationController *mainNavigationController;
+@property (nonatomic, strong) id<MainRouting> navigationRouter;
 
 @end
 
@@ -16,7 +22,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
+    self.mainNavigationController = [[UINavigationController alloc] init];
+    self.mainNavigationController.navigationBar.translucent = NO;
+    self.mainNavigationController.navigationBar.barTintColor = [UIColor pg_blueColor];
+    self.mainNavigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.mainNavigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationRouter = [[MainNaviagationRouter alloc] initWithNavigationController:self.mainNavigationController
+                                                                          configuration:[Configuration defaultConfiguration]];
+    [self.navigationRouter showMainGalleryAnimated:NO];
+
+    [self.window setRootViewController:self.mainNavigationController];
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 

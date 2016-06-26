@@ -9,10 +9,12 @@
 #import "CollectionStorage.h"
 #import "FlickrAPI.h"
 #import "CollectionStorageProtocol.h"
+#import "PhotoSearchFlickrAPIResponse.h"
 
 
 @interface SearchGalleryViewModel ()
 
+@property (nonatomic, weak) id<MainRouting> router;
 @property (nonatomic, strong) id<FlickrAPI> searchService;
 
 @property (nonatomic, strong) CollectionStorage *storage;
@@ -24,10 +26,11 @@
 
 @implementation SearchGalleryViewModel
 
-- (instancetype)initWithRouter:(id)router searchService:(id<FlickrAPI>)searchService {
+- (instancetype)initWithRouter:(id<MainRouting>)router searchService:(id<FlickrAPI>)searchService {
     if (self = [super init]) {
         self.storage = [CollectionStorage new];
         self.searchService = searchService;
+        self.router = router;
 
         [self setupCommands];
     }
@@ -44,12 +47,19 @@
 
 - (RACSignal *)reloadSignal {
     @weakify(self);
-    return [[[self.searchService searchPhotosWithText:self.searchText tagsOnly:NO] doNext:^(id x) {
-
+    return [[[self.searchService searchPhotosWithText:self.searchText tagsOnly:NO] doNext:^(PhotoSearchFlickrAPIResponse *response) {
+        @strongify(self);
+        self.storage.
     }] doError:^(NSError *error) {
         @strongify(self);
         self.errorMessage = error.localizedDescription;
     }];
+}
+
+#pragma mark - Collection Selectable
+
+- (void)selectItemAtSection:(NSInteger)section index:(NSInteger)index {
+    [self.router showPhotoDetails];
 }
 
 @end

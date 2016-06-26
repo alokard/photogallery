@@ -11,9 +11,12 @@
 #import "DefaultCollectionViewDataSource.h"
 #import "RACCommand.h"
 #import "DefaultCollectionViewDelegate.h"
+#import "SearchGalleryViewModel.h"
 #import "UIRefreshControl+RACCommandSupport.h"
 #import "SearchGalleryViewModel.h"
 #import "PhotoViewCell.h"
+#import "UIColor+PhotoGallery.h"
+#import "UICollectionView+EmptyState.h"
 
 static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 
@@ -32,10 +35,16 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 
 @implementation SearchGalleryViewController
 
+- (instancetype)initWithViewModel:(SearchGalleryViewModel *)viewModel {
+    if (self = [super init]) {
+        self.viewModel = viewModel;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.viewModel = [[SearchGalleryViewModel alloc] initWithRouter:nil searchService:nil];
+    self.view.backgroundColor = [UIColor pg_lightBackgroundColor];
 
     self.definesPresentationContext = YES;
 
@@ -98,10 +107,19 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
     self.collectionViewDataSource = [[DefaultCollectionViewDataSource alloc] initWithCollectionView:self.collectionView
                                                                                           cellClass:[PhotoViewCell class]
                                                                                             storage:self.viewModel.storage];
-    self.collectionViewDelegate = [DefaultCollectionViewDelegate new];
+    self.collectionViewDelegate = [[DefaultCollectionViewDelegate alloc] initWithViewModel:self.viewModel];
     self.collectionView.delegate = self.collectionViewDelegate;
 
+    [self setupCollectionViewEmptyState];
+
     [self setupCollectionViewRefreshControl];
+}
+
+- (void)setupCollectionViewEmptyState {
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"Start searching...";
+    label.textAlignment = NSTextAlignmentCenter;
+    self.collectionView.pg_emptyStateView = label;
 }
 
 - (void)setupCollectionViewRefreshControl {
@@ -145,5 +163,6 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     //TODO: update auto suggestion controller with new search text
 }
+
 
 @end

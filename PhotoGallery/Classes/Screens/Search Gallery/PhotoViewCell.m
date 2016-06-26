@@ -10,6 +10,7 @@
 
 @interface PhotoViewCell ()
 
+@property (nonatomic, strong) UIImageView *maskImage;
 @property (nonatomic, strong) PINImageView *imageView;
 
 @end
@@ -24,6 +25,12 @@
         self.imageView.clipsToBounds = YES;
         [self.contentView addSubview:self.imageView];
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.contentView);
+        }];
+
+        self.maskImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mask_photo_cell"]];
+        [self.contentView addSubview:self.maskImage];
+        [self.maskImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
         }];
     }

@@ -23,13 +23,28 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.items = [NSMutableArray new];
-        for (int i = 0; i < 10; i++) {
-            PhotoCellViewModel *photo = [PhotoCellViewModel new];
-            photo.photoURL = [NSURL URLWithString:@"https://farm8.staticflickr.com/7255/26678463923_dd60064463_m.jpg"];
-            [self.items addObject:photo];
-        }
     }
     return self;
+}
+
+#pragma mark - CollectionStorage protocol
+
+- (void)reloadData {
+    if (self.dataReloaded) {
+        self.dataReloaded();
+    }
+}
+
+- (void)appendItems:(NSArray *)items {
+    [self.items addObjectsFromArray:items];
+    if (self.appendedItems) {
+        self.appendedItems(items);
+    }
+}
+
+- (void)resetItems:(NSArray *)items {
+    self.items = [items mutableCopy];
+    [self reloadData];
 }
 
 - (NSInteger)numberOfItems {

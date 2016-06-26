@@ -10,6 +10,10 @@
 - (id)modelForSection:(NSInteger)section item:(NSInteger)item;
 - (NSInteger)numberOfItems;
 
+- (void)appendItems:(NSArray *)items;
+- (void)resetItems:(NSArray *)items;
+- (void)reloadData;
+
 - (void)setAppendedItems:(void (^)(NSArray *appendedItems))addedNewItems;
 - (void (^)(NSArray *appendedItems))appendedItems;
 
