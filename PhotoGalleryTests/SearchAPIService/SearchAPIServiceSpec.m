@@ -9,6 +9,8 @@
 #import "RACSignal.h"
 #import "PhotoSearchFlickrAPIResponse.h"
 #import "Photo.h"
+#import "Overcoat.h"
+#import "FlickrAPIErrorResponse.h"
 
 SPEC_BEGIN(SearchAPIServiceSpec)
 
@@ -70,7 +72,37 @@ describe(@"SearchAPIService", ^{
             [[expectFutureValue(apiResponse.photos) shouldEventually] haveCountOf:100];
             [[expectFutureValue(apiResponse.photos.firstObject) shouldEventually] beMemberOfClass:[Photo class]];
         });
+    });
 
+    context(@"Failed API requests", ^{
+        beforeAll(^{
+            [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+                return YES;
+            } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
+                NSString *fixture = OHPathForFile(@"ErrorResponse.json", self.class);
+                return [OHHTTPStubsResponse responseWithFileAtPath:fixture
+                                                        statusCode:500 headers:@{@"Content-Type" : @"application/json"}];
+            }];
+        });
+
+        afterAll(^{
+            [OHHTTPStubs removeAllStubs];
+        });
+
+        it(@"should parse error response correctly ", ^{
+            __block PhotoSearchFlickrAPIResponse *apiResponse = nil;
+            __block NSError *responseError = nil;
+            [[sut searchPhotosWithText:@"test" tagsOnly:NO] subscribeNext:^(PhotoSearchFlickrAPIResponse *response) {
+                apiResponse = response;
+            } error:^(NSError *error) {
+                responseError = error;
+            }];
+
+            [[expectFutureValue(apiResponse) shouldEventually] beNil];
+            [[expectFutureValue(responseError) shouldEventually] beNonNil];
+            [[expectFutureValue(responseError) shouldEventually] beKindOfClass:[NSError class]];
+            [[expectFutureValue(responseError.localizedDescription) shouldEventually] equal:@"Invalid API Key (Key has invalid format)"];
+        });
     });
 });
 

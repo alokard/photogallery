@@ -62,11 +62,6 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)searchButtonPressed:(id)sender {
-    [self.searchController setActive:YES];
-    [self.searchBar becomeFirstResponder];
-}
-
 - (UIView *)referenceViewForPhotoAtIndex:(NSInteger)index {
     for (PhotoViewCell *cell in self.collectionView.visibleCells) {
         if (index == [self.collectionView indexPathForCell:cell].item) {

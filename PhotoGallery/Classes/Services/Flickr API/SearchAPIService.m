@@ -13,6 +13,7 @@
 #import "ConfigurationKeys.h"
 #import "PhotoSearchFlickrAPIResponse.h"
 #import "FlickrAPIRequestSerializer.h"
+#import "Overcoat.h"
 
 
 @implementation SearchAPIService
@@ -41,7 +42,7 @@
     return self;
 }
 
-#pragma mark - FlickrAPI Protocol
+#pragma mark - SearchAPI Protocol
 
 - (RACSignal *)searchPhotosWithText:(NSString *)searchText tagsOnly:(BOOL)tagsOnly {
     NSParameterAssert(searchText);
@@ -52,7 +53,16 @@
             @"text"     : searchText,
             @"method"   : @"flickr.photos.search"
     };
-    return [[self rac_GET:@"" parameters:params] map:^id(OVCResponse *response) {
+    return [[[self rac_GET:@"" parameters:params] catch:^(NSError *error) {
+        NSError *result = error;
+        FlickrAPIErrorResponse *errorResponse = error.ovc_response.result;
+        if ([errorResponse isKindOfClass:[FlickrAPIErrorResponse class]]) {
+            NSMutableDictionary *userInfo = [error.userInfo mutableCopy];
+            userInfo[NSLocalizedDescriptionKey] = errorResponse.errorMessage;
+            result = [NSError errorWithDomain:error.domain code:errorResponse.errorCode userInfo:userInfo];
+        }
+        return [RACSignal error:result];
+    }] map:^id(OVCResponse *response) {
         NSDictionary *responseDict = response.result;
         NSError *error = nil;
         PhotoSearchFlickrAPIResponse *result = [MTLJSONAdapter modelOfClass:[PhotoSearchFlickrAPIResponse class]
