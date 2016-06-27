@@ -21,6 +21,8 @@
 @property (nonatomic, strong) CollectionStorage *storage;
 @property (nonatomic, strong) RACCommand *reloadCommand;
 
+@property (nonatomic, strong) PhotoSearchFlickrAPIResponse *response;
+
 @property (nonatomic, strong) NSString *errorMessage;
 
 @end
@@ -60,6 +62,7 @@
     @weakify(self);
     return [[[self.searchService searchPhotosWithText:self.searchText tagsOnly:NO] doNext:^(PhotoSearchFlickrAPIResponse *response) {
         @strongify(self);
+        self.response = response;
         [self updateStorageWithPhotos:response.photos];
     }] doError:^(NSError *error) {
         @strongify(self);
@@ -77,7 +80,10 @@
 #pragma mark - Collection Selectable
 
 - (void)selectItemAtSection:(NSInteger)section index:(NSInteger)index {
-    [self.router showPhotoDetails];
+    if (self.response.photos.count > index) {
+        Photo *photo = self.response.photos[index];
+        [self.router showPhotoDetailsForPhoto:photo itemIndex:index];
+    }
 }
 
 @end

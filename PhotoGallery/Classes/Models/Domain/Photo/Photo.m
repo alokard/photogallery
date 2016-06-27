@@ -24,7 +24,7 @@
 }
 
 - (NSURL *)photoURL {
-    return [self photoURLWithSize:@"o"];
+    return [self photoURLWithSize:@"h"];
 }
 
 - (NSURL *)photoURLWithSize:(NSString *)size {

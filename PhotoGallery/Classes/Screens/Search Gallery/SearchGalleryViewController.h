@@ -15,5 +15,7 @@
 
 - (instancetype)initWithViewModel:(SearchGalleryViewModel *)viewModel;
 
+- (id)referenceViewForPhotoAtIndex:(NSInteger)index;
+
 @end
 

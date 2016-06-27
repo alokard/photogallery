@@ -10,12 +10,16 @@
 #import "ConfigurationProtocol.h"
 #import "PhotoDetailsViewController.h"
 #import "PhotoDetailsTransitionController.h"
+#import "Photo.h"
+#import "PhotoDetailsViewModel.h"
 
 
 @interface MainNaviagationRouter ()
 
 @property (nonatomic, strong) id<ConfigurationProtocol> configuration;
 @property (nonatomic, weak) UINavigationController *navigationController;
+
+@property (nonatomic, weak) SearchGalleryViewController *searchGalleryViewController;
 
 @end
 
@@ -43,10 +47,12 @@
                                                                          searchService:apiService];
     SearchGalleryViewController *viewController = [[SearchGalleryViewController alloc] initWithViewModel:viewModel];
     [self.navigationController pushViewController:viewController animated:animated];
+    self.searchGalleryViewController = viewController;
 }
 
-- (void)showPhotoDetails {
-    PhotoDetailsViewController *photosViewController = [[PhotoDetailsViewController alloc] initWithViewModel:nil];
+- (void)showPhotoDetailsForPhoto:(Photo *)photo itemIndex:(NSInteger)index {
+    PhotoDetailsViewModel *viewModel = [[PhotoDetailsViewModel alloc] initWithRouter:self photo:photo index:index];
+    PhotoDetailsViewController *photosViewController = [[PhotoDetailsViewController alloc] initWithViewModel:viewModel];
     [self.navigationController presentViewController:photosViewController animated:YES completion:nil];
 }
 
@@ -56,5 +62,8 @@
     }
 }
 
+- (id)referenceViewForPhotoAtIndex:(NSInteger)index {
+    return [self.searchGalleryViewController referenceViewForPhotoAtIndex:index];
+}
 
 @end

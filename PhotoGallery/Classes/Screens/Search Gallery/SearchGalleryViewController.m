@@ -149,8 +149,7 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    NSString *searchText = searchBar.text;
-    NSLog(@"SearchBar text: %@", searchText);
+
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -175,8 +174,15 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     //TODO: update auto suggestion controller with new search text
-    NSLog(@"Update auto suggestion");
 }
 
+- (UIView *)referenceViewForPhotoAtIndex:(NSInteger)index {
+    for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
+        if (index == [self.collectionView indexPathForCell:cell].item) {
+            return cell.contentView;
+        }
+    }
+    return nil;
+}
 
 @end

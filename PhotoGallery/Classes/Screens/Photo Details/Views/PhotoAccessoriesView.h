@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class PhotoDetailsViewModel;
+
 @interface PhotoAccessoriesView : UIView
 
-- (void)updateWithViewModel:(id)viewModel;
+- (void)updateWithViewModel:(PhotoDetailsViewModel *)viewModel;
+
 @end

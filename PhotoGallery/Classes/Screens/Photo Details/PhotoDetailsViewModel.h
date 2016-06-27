@@ -3,13 +3,24 @@
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol MainRouting;
+@class Photo;
+@class RACCommand;
 
 
 @interface PhotoDetailsViewModel : NSObject
 
-- (instancetype)initWithRouter:(id <MainRouting>)router;
+@property (nonatomic, readonly) NSURL *photoURL;
+@property (nonatomic, readonly) NSString *title;
+
+@property (nonatomic, readonly) UIImage *placeholder;
+
+@property (nonatomic, readonly) RACCommand *doneCommand;
+
+- (instancetype)initWithRouter:(id <MainRouting>)router photo:(Photo *)photo index:(NSInteger)index;
+
+- (id)parentReference;
 
 @end

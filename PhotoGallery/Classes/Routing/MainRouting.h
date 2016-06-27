@@ -5,10 +5,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class Photo;
+
 @protocol MainRouting <NSObject>
 
 - (void)showMainGalleryAnimated:(BOOL)animated;
-- (void)showPhotoDetails;
+
+- (void)showPhotoDetailsForPhoto:(Photo *)photo itemIndex:(NSInteger)index;
 - (void)dismissDetails;
+
+- (id)referenceViewForPhotoAtIndex:(NSInteger)index;
 
 @end

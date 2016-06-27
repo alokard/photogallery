@@ -9,6 +9,8 @@
 #import <Masonry/MASConstraintMaker.h>
 #import "PhotoAccessoriesView.h"
 #import "View+MASAdditions.h"
+#import "PhotoDetailsViewModel.h"
+#import "PhotoDetailsViewModel.h"
 
 @interface PhotoAccessoriesView ()
 
@@ -54,13 +56,11 @@
         make.right.left.bottom.equalTo(self);
         make.height.equalTo(self.mas_height).multipliedBy(0.2f);
     }];
-
-    self.titleTextView.text = @"Some title text to test..";
-    [self layoutIfNeeded];
 }
 
-- (void)updateWithViewModel:(id)viewModel {
-
+- (void)updateWithViewModel:(PhotoDetailsViewModel *)viewModel {
+    self.titleTextView.text = viewModel.title;
+    [self layoutIfNeeded];
 }
 
 #pragma mark - PassThrough touches if needed

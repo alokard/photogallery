@@ -13,8 +13,8 @@
 
 @property (nonatomic, strong) PhotoDetailsViewModel *viewModel;
 
-@property (nonatomic, strong) ImageScrollView *imageScrollView;
-@property (nonatomic, strong) UIView *accessoriesView;
+@property (nonatomic, weak) ImageScrollView *imageScrollView;
+@property (nonatomic, weak) UIView *accessoriesView;
 
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
 @property (nonatomic, strong) UITapGestureRecognizer *singleTapGestureRecognizer;
@@ -50,7 +50,7 @@
     [self setupImageScrollView];
     [self setupAccessoriesView];
 
-    self.transitionController.startingView = nil;//self.referenceView;
+    self.transitionController.startingView = self.viewModel.parentReference;
     UIView *endingView = self.imageScrollView.imageView;
     self.transitionController.endingView = endingView;
 }
@@ -67,23 +67,26 @@
 }
 
 - (void)setupImageScrollView {
-    self.imageScrollView = [[ImageScrollView alloc] initWithImageURL:[NSURL URLWithString:@"https://farm8.staticflickr.com/7255/26678463923_dd60064463_n.jpg"]
-                                                         placeholder:nil
-                                                               frame:self.view.bounds];
-    [self.contentView addSubview:self.imageScrollView];
-    [self.imageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+    ImageScrollView *imageScrollView = [[ImageScrollView alloc] initWithImageURL:self.viewModel.photoURL
+                                                                     placeholder:self.viewModel.placeholder
+                                                                           frame:self.view.bounds];
+    [self.contentView addSubview:imageScrollView];
+    [imageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
     }];
+    self.imageScrollView = imageScrollView;
 
     [self.singleTapGestureRecognizer requireGestureRecognizerToFail:self.imageScrollView.doubleTapGestureRecognizer];
 }
 
 - (void)setupAccessoriesView {
-    self.accessoriesView = [[PhotoAccessoriesView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:self.accessoriesView];
-    [self.accessoriesView mas_makeConstraints:^(MASConstraintMaker *make) {
+    PhotoAccessoriesView *accessoriesView = [[PhotoAccessoriesView alloc] initWithFrame:self.view.bounds];
+    [accessoriesView updateWithViewModel:self.viewModel];
+    [self.view addSubview:accessoriesView];
+    [accessoriesView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    self.accessoriesView = accessoriesView;
 }
 
 #pragma mark - Status bar
@@ -151,7 +154,7 @@
 
     UIView *startingView = self.imageScrollView.imageView;
     self.transitionController.startingView = startingView;
-    self.transitionController.endingView = nil;//self.referenceView
+    self.transitionController.endingView = self.viewModel.parentReference;
 
     self.overlayWasHiddenBeforeTransition = self.accessoriesView.hidden;
     [self setAccessoriesViewHidden:YES animated:animated];
