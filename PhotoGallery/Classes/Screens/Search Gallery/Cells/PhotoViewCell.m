@@ -11,7 +11,7 @@
 @interface PhotoViewCell ()
 
 @property (nonatomic, strong) UIImageView *maskImage;
-@property (nonatomic, strong) PINImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end
 

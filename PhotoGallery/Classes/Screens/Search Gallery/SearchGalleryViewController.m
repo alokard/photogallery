@@ -67,6 +67,15 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
     [self.searchBar becomeFirstResponder];
 }
 
+- (UIView *)referenceViewForPhotoAtIndex:(NSInteger)index {
+    for (PhotoViewCell *cell in self.collectionView.visibleCells) {
+        if (index == [self.collectionView indexPathForCell:cell].item) {
+            return cell.imageView;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - Search UI Helpers
 
 - (UISearchBar *)searchBar {
@@ -174,15 +183,6 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     //TODO: update auto suggestion controller with new search text
-}
-
-- (UIView *)referenceViewForPhotoAtIndex:(NSInteger)index {
-    for (UICollectionViewCell *cell in self.collectionView.visibleCells) {
-        if (index == [self.collectionView indexPathForCell:cell].item) {
-            return cell.contentView;
-        }
-    }
-    return nil;
 }
 
 @end

@@ -9,4 +9,6 @@
 
 @interface PhotoViewCell : UICollectionViewCell <DefaultCellProtocol>
 
+@property (nonatomic, readonly) UIImageView *imageView;
+
 @end
