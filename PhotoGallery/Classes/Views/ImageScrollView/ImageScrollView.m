@@ -22,23 +22,22 @@
 
 - (instancetype)initWithImage:(UIImage *)image frame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self setupInternalImageViewWithImage:image];
         [self generalSetup];
+        [self setupInternalImageViewWithImage:image];
     }
     return self;
 }
 
 - (instancetype)initWithImageURL:(NSURL *)imageURL placeholder:(UIImage *)placeholder frame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self setupInternalImageViewWithImageURL:imageURL placeholder:placeholder];
         [self generalSetup];
+        [self setupInternalImageViewWithImageURL:imageURL placeholder:placeholder];
     }
     return self;
 }
 
 - (void)generalSetup {
     [self setupScrollView];
-    [self updateZoomScale];
     [self setupGestureRecognizers];
     self.delegate = self;
 }
