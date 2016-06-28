@@ -1,22 +1,20 @@
 //
-// Created by Eugene on 6/25/16.
+// Created by Eugene on 6/28/16.
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
-
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <Overcoat/OVCHTTPSessionManager+ReactiveCocoa.h>
-#import <Overcoat/OVCResponse.h>
-#import "SearchAPIService.h"
-#import "FlickrAPIErrorResponse.h"
+#import "NetworkService.h"
 #import "Configuration.h"
 #import "ConfigurationKeys.h"
-#import "PhotoSearchFlickrAPIResponse.h"
 #import "FlickrAPIRequestSerializer.h"
-#import "Overcoat.h"
+#import "ConfigurationProtocol.h"
+#import "FlickrAPIErrorResponse.h"
+#import "RACSignal.h"
+#import "NSError+OVCResponse.h"
+#import "OVCResponse.h"
+#import "RACSignal+Operations.h"
 
-
-@implementation SearchAPIService
+@implementation NetworkService
 
 + (Class)errorModelClass {
     return [FlickrAPIErrorResponse class];
@@ -27,6 +25,10 @@
 }
 
 #pragma mark - Initialization
+
++ (instancetype)defaultNetworkService {
+    return [[self alloc] init];
+}
 
 - (instancetype)init {
     return [self initWithConfiguration:[Configuration defaultConfiguration]];
@@ -42,18 +44,20 @@
     return self;
 }
 
-#pragma mark - SearchAPI Protocol
+#pragma mark - Networking
 
-- (RACSignal *)searchPhotosWithText:(NSString *)searchText tagsOnly:(BOOL)tagsOnly {
-    NSParameterAssert(searchText);
-    if (searchText.length == 0) {
-        return [RACSignal return:nil];
-    }
-    NSDictionary *params = @{
-            @"text"     : searchText,
-            @"method"   : @"flickr.photos.search"
-    };
-    return [[[self rac_GET:@"" parameters:params] catch:^(NSError *error) {
+- (RACSignal *)rac_GET:(NSString *)URLString parameters:(id)parameters {
+    return [[super rac_GET:URLString parameters:parameters] catch:[self errorCatchingBlock]];
+}
+
+- (RACSignal *)rac_POST:(NSString *)URLString parameters:(id)parameters {
+    return [[super rac_POST:URLString parameters:parameters] catch:[self errorCatchingBlock]];
+}
+
+#pragma mark - Helpers
+
+- (RACSignal *(^)(NSError *))errorCatchingBlock {
+    return ^(NSError *error) {
         NSError *result = error;
         FlickrAPIErrorResponse *errorResponse = error.ovc_response.result;
         if ([errorResponse isKindOfClass:[FlickrAPIErrorResponse class]]) {
@@ -62,17 +66,8 @@
             result = [NSError errorWithDomain:error.domain code:errorResponse.errorCode userInfo:userInfo];
         }
         return [RACSignal error:result];
-    }] map:^id(OVCResponse *response) {
-        NSDictionary *responseDict = response.result;
-        NSError *error = nil;
-        PhotoSearchFlickrAPIResponse *result = [MTLJSONAdapter modelOfClass:[PhotoSearchFlickrAPIResponse class]
-                                                         fromJSONDictionary:responseDict[@"photos"]
-                                                                      error:&error];
-        if (error) {
-            NSLog(@"%@", error);
-        }
-        return result;
-    }];
+    };
 }
+
 
 @end

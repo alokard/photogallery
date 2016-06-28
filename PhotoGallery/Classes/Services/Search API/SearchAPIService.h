@@ -7,10 +7,11 @@
 #import "SearchAPI.h"
 
 @protocol ConfigurationProtocol;
+@protocol Networking;
 
 
-@interface SearchAPIService : OVCHTTPSessionManager <SearchAPI>
+@interface SearchAPIService : NSObject <SearchAPI>
 
-- (instancetype)initWithConfiguration:(id <ConfigurationProtocol>)configuration;
+- (instancetype)initWithNetworking:(id <Networking>)networkingService;
 
 @end

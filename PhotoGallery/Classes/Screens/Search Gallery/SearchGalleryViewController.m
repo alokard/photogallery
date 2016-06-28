@@ -12,12 +12,13 @@
 #import "DefaultCollectionViewDataSource.h"
 #import "DefaultCollectionViewDelegate.h"
 #import "SearchGalleryViewModel.h"
-#import "PhotoViewCell.h"
+#import "PhotoViewCollectionCell.h"
 
 #import "RACCommand.h"
 #import "UIRefreshControl+RACCommandSupport.h"
 #import "UIColor+PhotoGallery.h"
 #import "UICollectionView+EmptyState.h"
+#import "SuggestionTagViewModel.h"
 
 static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 
@@ -63,7 +64,7 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 }
 
 - (UIView *)referenceViewForPhotoAtIndex:(NSInteger)index {
-    for (PhotoViewCell *cell in self.collectionView.visibleCells) {
+    for (PhotoViewCollectionCell *cell in self.collectionView.visibleCells) {
         if (index == [self.collectionView indexPathForCell:cell].item) {
             return cell.imageView;
         }
@@ -114,7 +115,7 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
     self.edgesForExtendedLayout = UIRectEdgeTop;
 
     self.collectionViewDataSource = [[DefaultCollectionViewDataSource alloc] initWithCollectionView:self.collectionView
-                                                                                          cellClass:[PhotoViewCell class]
+                                                                                          cellClass:[PhotoViewCollectionCell class]
                                                                                             storage:self.viewModel.storage];
     self.collectionViewDelegate = [[DefaultCollectionViewDelegate alloc] initWithViewModel:self.viewModel];
     self.collectionView.delegate = self.collectionViewDelegate;
@@ -177,7 +178,7 @@ static CGFloat const kGalleryCollectionViewBottomInset = 45.0f;
 #pragma mark - SearchResultsUpdater
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    //TODO: update auto suggestion controller with new search text
+    self.viewModel.suggestionViewModel.searchText = self.searchBar.text;
 }
 
 @end

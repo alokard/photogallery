@@ -7,7 +7,7 @@
 #import "DefaultCellProtocol.h"
 
 
-@interface PhotoViewCell : UICollectionViewCell <DefaultCellProtocol>
+@interface PhotoViewCollectionCell : UICollectionViewCell <DefaultCellProtocol>
 
 @property (nonatomic, readonly) UIImageView *imageView;
 
