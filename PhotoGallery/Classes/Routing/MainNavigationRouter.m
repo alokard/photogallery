@@ -3,33 +3,37 @@
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
-#import "MainNaviagationRouter.h"
+#import "MainNavigationRouter.h"
 #import "SearchGalleryViewController.h"
 #import "SearchGalleryViewModel.h"
-#import "SearchAPIService.h"
+#import "SearchAPI.h"
 #import "ConfigurationProtocol.h"
 #import "PhotoDetailsViewController.h"
-#import "PhotoDetailsTransitionController.h"
 #import "Photo.h"
 #import "PhotoDetailsViewModel.h"
+#import "APIServiceProviderProtocol.h"
+#import "SuggestionTagViewModel.h"
 
 
-@interface MainNaviagationRouter ()
+@interface MainNavigationRouter ()
 
 @property (nonatomic, strong) id<ConfigurationProtocol> configuration;
-@property (nonatomic, weak) UINavigationController *navigationController;
+@property (nonatomic, strong) id <APIServiceProviderProtocol> serviceProvider;
 
+@property (nonatomic, weak) UINavigationController *navigationController;
 @property (nonatomic, weak) SearchGalleryViewController *searchGalleryViewController;
 
 @end
 
-@implementation MainNaviagationRouter
+@implementation MainNavigationRouter
 
 - (instancetype)initWithNavigationController:(UINavigationController *)navigationController
-                               configuration:(id<ConfigurationProtocol>)configuration {
+                               configuration:(id <ConfigurationProtocol>)configuration
+                          apiServiceProvider:(id <APIServiceProviderProtocol>)serviceProvider {
     if (self = [super init]) {
         self.navigationController = navigationController;
         self.configuration = configuration;
+        self.serviceProvider = serviceProvider;
     }
     return self;
 }
@@ -42,9 +46,12 @@
         return;
     }
 
-    SearchAPIService *apiService = [[SearchAPIService alloc] initWithConfiguration:self.configuration];
+    id<SearchAPI> apiService = [self.serviceProvider serviceForProtocol:@protocol(SearchAPI)];
     SearchGalleryViewModel *viewModel = [[SearchGalleryViewModel alloc] initWithRouter:self
                                                                          searchService:apiService];
+    id<SuggestionAPI> suggestionService = [self.serviceProvider serviceForProtocol:@protocol(SuggestionAPI)];
+    SuggestionTagViewModel *suggestionViewModel = [[SuggestionTagViewModel alloc] initWithSuggestionService:suggestionService];
+    viewModel.suggestionViewModel = suggestionViewModel;
     SearchGalleryViewController *viewController = [[SearchGalleryViewController alloc] initWithViewModel:viewModel];
     [self.navigationController pushViewController:viewController animated:animated];
     self.searchGalleryViewController = viewController;

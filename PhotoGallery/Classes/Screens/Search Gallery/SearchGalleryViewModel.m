@@ -11,6 +11,7 @@
 #import "CollectionStorageProtocol.h"
 #import "PhotoSearchFlickrAPIResponse.h"
 #import "PhotoCellViewModel.h"
+#import "SuggestionTagViewModel.h"
 
 
 @interface SearchGalleryViewModel ()

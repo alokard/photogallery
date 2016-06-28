@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainNaviagationRouter.h"
+#import "MainNavigationRouter.h"
 #import "Configuration.h"
 #import "UIColor+PhotoGallery.h"
 
@@ -29,8 +29,7 @@
     self.mainNavigationController.navigationBar.barTintColor = [UIColor pg_blueColor];
     self.mainNavigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.mainNavigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationRouter = [[MainNaviagationRouter alloc] initWithNavigationController:self.mainNavigationController
-                                                                          configuration:[Configuration defaultConfiguration]];
+    self.navigationRouter = [[MainNavigationRouter alloc] initWithNavigationController:self.mainNavigationController configuration:[Configuration defaultConfiguration] apiServiceProvider:nil];
     [self.navigationRouter showMainGalleryAnimated:NO];
 
     [self.window setRootViewController:self.mainNavigationController];

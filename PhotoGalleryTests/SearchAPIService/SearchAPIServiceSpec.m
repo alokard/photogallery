@@ -23,7 +23,7 @@ describe(@"SearchAPIService", ^{
             return [params firstObject];
         }];
 
-        sut = [[SearchAPIService alloc] initWithConfiguration:configurationMock];
+        sut = [[SearchAPIService alloc] initWithNetworking:configurationMock];
     });
 
     it(@"should init correctly", ^{

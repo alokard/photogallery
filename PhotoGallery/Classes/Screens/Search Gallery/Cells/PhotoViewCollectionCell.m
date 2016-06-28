@@ -3,19 +3,19 @@
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
-#import "PhotoViewCell.h"
+#import "PhotoViewCollectionCell.h"
 #import "View+MASAdditions.h"
 #import "PhotoCellViewModel.h"
 #import "PINImageView+PINRemoteImage.h"
 
-@interface PhotoViewCell ()
+@interface PhotoViewCollectionCell ()
 
 @property (nonatomic, strong) UIImageView *maskImage;
 @property (nonatomic, strong) UIImageView *imageView;
 
 @end
 
-@implementation PhotoViewCell
+@implementation PhotoViewCollectionCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];

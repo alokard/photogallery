@@ -10,9 +10,12 @@
 
 @class RACCommand;
 @protocol SearchAPI;
+@class SuggestionTagViewModel;
 
 
 @interface SearchGalleryViewModel : NSObject <CollectionSelectable>
+
+@property (nonatomic, strong) SuggestionTagViewModel *suggestionViewModel;
 
 @property (nonatomic, strong) NSString *searchText;
 @property (nonatomic, readonly) NSString *errorMessage;
