@@ -19,6 +19,7 @@
 		D6185260596A21AE4883D9FA /* SuggestionTagResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185D16E68D4D12AC59F3FB /* SuggestionTagResponse.m */; };
 		D61852BFBA97EE4C177830DD /* SearchAPIService.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185081EFB8662997F97289 /* SearchAPIService.m */; };
 		D618541BB6BF4849419464EB /* PhotoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D61854BCA2D9E1B01DDAD9FB /* PhotoDetailsViewController.m */; };
+		D61854601EF2A793958A7E9A /* DefaultTableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185C078DD4B8448D6A8B7D /* DefaultTableViewDelegate.m */; };
 		D618547E1D24DA6A25F08211 /* BaseListFlickrAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = D61856CCA4C2C29A8F549AE3 /* BaseListFlickrAPIResponse.m */; };
 		D618547FCCCC7BCE7FCDB747 /* PhotoCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D618534A78CD56D26F1D39B8 /* PhotoCellViewModel.m */; };
 		D618550712FB2ECA074E71D2 /* UICollectionView+EmptyState.m in Sources */ = {isa = PBXBuildFile; fileRef = D61858EACAE63524B9677986 /* UICollectionView+EmptyState.m */; };
@@ -60,6 +61,7 @@
 		D6185EDAF888704D3B8B1A31 /* JSONLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D618532ABBB2F7AF5C3708E6 /* JSONLoader.m */; };
 		D6185F0191E344E325DD1DEE /* PhotoSearchResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D6185D5BEC09BD01E36F917A /* PhotoSearchResponse.json */; };
 		D6185F1E235CF35583ED9750 /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185CF5BD5BDDAD7DA82AB7 /* NetworkService.m */; };
+		D6185FBA01D5309651B0DDA1 /* DefaultTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D61855ED5820D7332CE05F35 /* DefaultTableViewDataSource.m */; };
 		EF6A972B1D1E806600C45871 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6A972A1D1E806600C45871 /* main.m */; };
 		EF6A975C1D1E814F00C45871 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6A974F1D1E814F00C45871 /* Assets.xcassets */; };
 		EF6A975D1D1E814F00C45871 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6A97501D1E814F00C45871 /* LaunchScreen.storyboard */; };
@@ -108,6 +110,7 @@
 		D618557DB9921C164EB81A1D /* SearchAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAPI.h; sourceTree = "<group>"; };
 		D61855B3590E0ED7409E1D10 /* APIServiceProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIServiceProvider.h; sourceTree = "<group>"; };
 		D61855E5F30813081E82CE08 /* PhotoSearchFlickrAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSearchFlickrAPIResponse.h; sourceTree = "<group>"; };
+		D61855ED5820D7332CE05F35 /* DefaultTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultTableViewDataSource.m; sourceTree = "<group>"; };
 		D6185647185CD23F50B5BDE0 /* SuggestionAPIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestionAPIService.m; sourceTree = "<group>"; };
 		D618566B8C7AD9BEB4A5B3FE /* SuggestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestionViewController.h; sourceTree = "<group>"; };
 		D618567D755C82C7487679D6 /* ImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollView.h; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 		D6185724BD8C4648633AE677 /* MainRouting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainRouting.h; sourceTree = "<group>"; };
 		D61857321754C0E27376EF19 /* PhotoViewCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewCollectionCell.h; sourceTree = "<group>"; };
 		D618578DC64078539C84328F /* SearchGalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGalleryViewController.m; sourceTree = "<group>"; };
+		D61857A7C14C844155A97481 /* DefaultTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultTableViewDelegate.h; sourceTree = "<group>"; };
 		D61857AE011EDBE82F69A4F5 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
 		D61857FDB0E04487421BC61E /* APIServiceProviderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIServiceProviderProtocol.h; sourceTree = "<group>"; };
 		D618580A9F1C8BC57E1EF972 /* DefaultCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultCellProtocol.h; sourceTree = "<group>"; };
@@ -141,8 +145,10 @@
 		D6185AD4E907304BFF5CB774 /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		D6185B540DF8FF22598D0536 /* ConfigurationKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationKeys.m; sourceTree = "<group>"; };
 		D6185C05988272B4489077C2 /* AutoUpdatingLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoUpdatingLayout.m; sourceTree = "<group>"; };
+		D6185C078DD4B8448D6A8B7D /* DefaultTableViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultTableViewDelegate.m; sourceTree = "<group>"; };
 		D6185C1EAA5CA2F965A0AB81 /* SearchAPIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchAPIService.h; sourceTree = "<group>"; };
 		D6185C359FF2F5323EC846C6 /* DefaultCollectionViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultCollectionViewDataSource.h; sourceTree = "<group>"; };
+		D6185C41F587C025173695A3 /* DefaultTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultTableViewDataSource.h; sourceTree = "<group>"; };
 		D6185C5F87D8EBD75A8EFA2E /* FlickrAPIErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPIErrorResponse.m; sourceTree = "<group>"; };
 		D6185C6D4782D42E582C9E08 /* CollectionSelectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionSelectable.h; sourceTree = "<group>"; };
 		D6185C806FD4FE4609E54F95 /* CollectionStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionStorage.h; sourceTree = "<group>"; };
@@ -407,6 +413,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D6185B24A6B1BF38FD798E14 /* TableView Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D6185C41F587C025173695A3 /* DefaultTableViewDataSource.h */,
+				D61855ED5820D7332CE05F35 /* DefaultTableViewDataSource.m */,
+				D61857A7C14C844155A97481 /* DefaultTableViewDelegate.h */,
+				D6185C078DD4B8448D6A8B7D /* DefaultTableViewDelegate.m */,
+			);
+			path = "TableView Helpers";
+			sourceTree = "<group>";
+		};
 		D6185BC7086ED4A4D1918C1A /* Search Gallery */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,6 +619,7 @@
 				D618515BBB6C936EB25835A6 /* Storage */,
 				D6185D84844375207216FFD4 /* Domain */,
 				D6185105EED356F2066BE2FB /* ColllectionView Helpers */,
+				D6185B24A6B1BF38FD798E14 /* TableView Helpers */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -870,6 +888,8 @@
 				D61850ABFB4B14F132D2A620 /* APIServiceProvider.m in Sources */,
 				D6185C55E28A6969E37D0AB2 /* SuggestionTagViewModel.m in Sources */,
 				D6185927E49D7ED95E245B23 /* SuggestionViewController.m in Sources */,
+				D6185FBA01D5309651B0DDA1 /* DefaultTableViewDataSource.m in Sources */,
+				D61854601EF2A793958A7E9A /* DefaultTableViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
