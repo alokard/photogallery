@@ -32,7 +32,7 @@
         }
         return @([value integerValue]);
     } reverseBlock:^id(NSNumber *value, BOOL *success, NSError *__autoreleasing *error) {
-        return value;
+        return value.stringValue;
     }];
 }
 
