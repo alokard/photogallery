@@ -11,7 +11,7 @@
 
 - (void)showMainGalleryAnimated:(BOOL)animated;
 
-- (void)showPhotoDetailsForPhoto:(Photo *)photo itemIndex:(NSInteger)index;
+- (void)showPhotoDetailsForPhoto:(Photo *)photo itemIndex:(NSInteger)index inArray:(NSArray<Photo *> *)photos;
 - (void)dismissDetails;
 
 - (id)referenceViewForPhotoAtIndex:(NSInteger)index;

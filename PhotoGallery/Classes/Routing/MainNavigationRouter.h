@@ -7,6 +7,7 @@
 #import "MainRouting.h"
 
 @protocol ConfigurationProtocol;
+@protocol APIServiceProviderProtocol;
 
 
 @interface MainNavigationRouter : NSObject <MainRouting>

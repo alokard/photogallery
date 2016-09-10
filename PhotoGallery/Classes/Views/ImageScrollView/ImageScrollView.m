@@ -48,6 +48,15 @@
     [self centerScrollViewContents];
 }
 
+- (void)setImageWithURL:(NSURL *)imageURL placeholder:(UIImage *)placeholder {
+    [self updateWithImage:placeholder];
+    [self.imageView pin_setImageFromURL:imageURL
+                       placeholderImage:placeholder
+                             completion:^(PINRemoteImageManagerResult *result) {
+                                 [self updateWithImage:result.image];
+                             }];
+}
+
 #pragma mark - Setup helpers
 
 - (void)setupInternalImageViewWithImage:(UIImage *)image {
@@ -55,16 +64,17 @@
     [self updateWithImage:image];
 
     [self addSubview:self.imageView];
+
+    UIView *view = [UIView new];
+    view.frame = CGRectMake(20, 20, 30, 30);
+    view.backgroundColor = [UIColor whiteColor];
+    [self addSubview:view];
 }
 
 - (void)setupInternalImageViewWithImageURL:(NSURL *)imageURL placeholder:(UIImage *)placeholder {
     self.imageView = [[UIImageView alloc] init];
-    [self updateWithImage:placeholder];
-    [self.imageView pin_setImageFromURL:imageURL
-                       placeholderImage:placeholder
-                             completion:^(PINRemoteImageManagerResult *result) {
-                                 [self updateWithImage:result.image];
-                             }];
+
+    [self setImageWithURL:imageURL placeholder:placeholder];
 
     [self addSubview:self.imageView];
 }

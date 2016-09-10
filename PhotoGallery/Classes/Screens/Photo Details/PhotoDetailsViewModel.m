@@ -9,6 +9,11 @@
 #import "RACSignal.h"
 #import "Photo.h"
 #import "PINRemoteImageManager.h"
+#import "CollectionStorage.h"
+#import "PhotoCellViewModel.h"
+#import "CollectionStorageProtocol.h"
+#import "NSArray+RACSequenceAdditions.h"
+#import "RACSequence.h"
 
 
 @interface PhotoDetailsViewModel ()
@@ -16,7 +21,8 @@
 @property (nonatomic, strong) NSURL *photoURL;
 @property (nonatomic, strong) NSURL *placeholderURL;
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic) NSInteger parentIndex;
+
+@property (nonatomic, strong) id <CollectionStorageProtocol> storage;
 
 @property (nonatomic, strong) RACCommand *doneCommand;
 
@@ -26,13 +32,18 @@
 
 @implementation PhotoDetailsViewModel
 
-- (instancetype)initWithRouter:(id <MainRouting>)router photo:(Photo *)photo index:(NSInteger)index {
+- (instancetype)initWithRouter:(id <MainRouting>)router photo:(Photo *)photo index:(NSInteger)index inArray:(NSArray<Photo *> *)photos {
     if (self = [super init]) {
         self.router = router;
         self.photoURL = photo.photoURL;
         self.placeholderURL = photo.thumbnailURL;
         self.title = photo.title;
         self.parentIndex = index;
+
+        self.storage = [CollectionStorage new];
+        [self.storage resetItems:[photos.rac_sequence map:^PhotoCellViewModel *(Photo *value) {
+            return [[PhotoCellViewModel alloc] initWithPhoto:value];
+        }].array];
 
         [self setupCommands];
     }

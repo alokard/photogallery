@@ -10,6 +10,7 @@
 #import "MainNavigationRouter.h"
 #import "Configuration.h"
 #import "UIColor+PhotoGallery.h"
+#import "APIServiceProvider.h"
 
 @interface AppDelegate ()
 
@@ -24,12 +25,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
+    APIServiceProvider *serviceProvider = [[APIServiceProvider alloc] initWithConfiguration:[Configuration defaultConfiguration]];
+
     self.mainNavigationController = [[UINavigationController alloc] init];
     self.mainNavigationController.navigationBar.translucent = NO;
     self.mainNavigationController.navigationBar.barTintColor = [UIColor pg_blueColor];
     self.mainNavigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.mainNavigationController.navigationBar.barStyle = UIBarStyleBlack;
-    self.navigationRouter = [[MainNavigationRouter alloc] initWithNavigationController:self.mainNavigationController configuration:[Configuration defaultConfiguration] apiServiceProvider:nil];
+    self.navigationRouter = [[MainNavigationRouter alloc] initWithNavigationController:self.mainNavigationController
+                                                                         configuration:[Configuration defaultConfiguration]
+                                                                    apiServiceProvider:serviceProvider];
     [self.navigationRouter showMainGalleryAnimated:NO];
 
     [self.window setRootViewController:self.mainNavigationController];

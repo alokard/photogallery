@@ -16,6 +16,8 @@
 - (instancetype)initWithImage:(UIImage *)image frame:(CGRect)frame;
 - (instancetype)initWithImageURL:(NSURL *)imageURL placeholder:(UIImage *)placeholder frame:(CGRect)frame;
 
+- (void)setImageWithURL:(NSURL *)imageURL placeholder:(UIImage *)placeholder;
+
 - (void)updateWithImage:(UIImage *)image;
 - (void)centerScrollViewContents;
 

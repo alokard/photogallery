@@ -6,6 +6,8 @@
 #import <UIKit/UIKit.h>
 #import "PhotoDetailsTransitionController.h"
 
+@class DefaultCollectionViewDataSource;
+
 @interface PhotoDetailsViewController : UIViewController
 
 @property (nonatomic, readonly) PhotoDetailsTransitionController *transitionController;

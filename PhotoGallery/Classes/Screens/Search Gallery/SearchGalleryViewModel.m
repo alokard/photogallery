@@ -83,7 +83,7 @@
 - (void)selectItemAtSection:(NSInteger)section index:(NSInteger)index {
     if (self.response.photos.count > index) {
         Photo *photo = self.response.photos[index];
-        [self.router showPhotoDetailsForPhoto:photo itemIndex:index];
+        [self.router showPhotoDetailsForPhoto:photo itemIndex:index inArray:self.response.photos];
     }
 }
 
