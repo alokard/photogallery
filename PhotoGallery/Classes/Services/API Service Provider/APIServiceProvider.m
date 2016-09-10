@@ -27,12 +27,12 @@
 }
 
 - (id)serviceForProtocol:(Protocol *)aProtocol {
-    if ([NSStringFromProtocol(aProtocol) isEqual:NSStringFromProtocol(@protocol(SearchAPI)]) {
+    if ([NSStringFromProtocol(aProtocol) isEqual:NSStringFromProtocol(@protocol(SearchAPI))]) {
         NetworkService *networkService = [[NetworkService alloc] initWithConfiguration:self.configuration];
         SearchAPIService *apiService = [[SearchAPIService alloc] initWithNetworking:networkService];
         return apiService;
     }
-    else if ([NSStringFromProtocol(aProtocol) isEqual:NSStringFromProtocol(@protocol(SuggestionAPI)]) {
+    else if ([NSStringFromProtocol(aProtocol) isEqual:NSStringFromProtocol(@protocol(SuggestionAPI))]) {
         NetworkService *networkService = [[NetworkService alloc] initWithConfiguration:self.configuration];
         SuggestionAPIService *apiService = [[SuggestionAPIService alloc] initWithNetworking:networkService];
         return apiService;

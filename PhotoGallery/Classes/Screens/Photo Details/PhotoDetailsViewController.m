@@ -8,12 +8,16 @@
 #import "View+MASAdditions.h"
 #import "PhotoAccessoriesView.h"
 #import "PhotoDetailsViewModel.h"
+#import "PhotosFlowLayout.h"
+#import "PhotoCellView.h"
+#import "DefaultCollectionViewDataSource.h"
 
-@interface PhotoDetailsViewController ()
+@interface PhotoDetailsViewController () <UICollectionViewDelegate>
 
 @property (nonatomic, strong) PhotoDetailsViewModel *viewModel;
 
-@property (nonatomic, weak) ImageScrollView *imageScrollView;
+@property (nonatomic, weak) UICollectionView *collectionView;
+
 @property (nonatomic, weak) UIView *accessoriesView;
 
 @property (nonatomic, strong) UIPanGestureRecognizer *panGestureRecognizer;
@@ -23,6 +27,10 @@
 
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic) BOOL overlayWasHiddenBeforeTransition;
+
+@property (nonatomic) NSInteger currentPage;
+@property (nonatomic) CGSize pageSize;
+@property(nonatomic, strong) DefaultCollectionViewDataSource *collectionViewDataSource;
 
 @end
 
@@ -47,11 +55,11 @@
     self.view.backgroundColor = [UIColor blackColor];
 
     [self setupContentView];
-    [self setupImageScrollView];
+    [self setupCollectionView];
     [self setupAccessoriesView];
 
     self.transitionController.startingView = self.viewModel.parentReference;
-    UIView *endingView = self.imageScrollView.imageView;
+    UIView *endingView = ((PhotoCellView *)self.collectionView.visibleCells.firstObject).imageScrollView.imageView;
     self.transitionController.endingView = endingView;
 }
 
@@ -66,17 +74,32 @@
     }];
 }
 
-- (void)setupImageScrollView {
-    ImageScrollView *imageScrollView = [[ImageScrollView alloc] initWithImageURL:self.viewModel.photoURL
-                                                                     placeholder:self.viewModel.placeholder
-                                                                           frame:self.view.bounds];
-    [self.contentView addSubview:imageScrollView];
-    [imageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+- (void)setupCollectionView {
+
+    PhotosFlowLayout *layout = [PhotosFlowLayout new];
+    layout.sideItemAlpha = 1.f;
+    layout.sideItemScale = 1.f;
+    layout.spacing = 20.f;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    [self.contentView addSubview:collectionView];
+    self.collectionView = collectionView;
+
+    self.collectionViewDataSource = [[DefaultCollectionViewDataSource alloc] initWithCollectionView:self.collectionView
+                                                                                          cellClass:[PhotoCellView class]
+                                                                                            storage:self.viewModel.storage];
+    self.collectionView.delegate = self;
+    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
     }];
-    self.imageScrollView = imageScrollView;
 
-    [self.singleTapGestureRecognizer requireGestureRecognizerToFail:self.imageScrollView.doubleTapGestureRecognizer];
+    CGSize pageSize = layout.itemSize;
+    if (layout.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
+        pageSize.width += layout.minimumLineSpacing;
+    } else {
+        pageSize.height += layout.minimumLineSpacing;
+    }
+    self.pageSize = pageSize;
 }
 
 - (void)setupAccessoriesView {
@@ -152,7 +175,7 @@
         return;
     }
 
-    UIView *startingView = self.imageScrollView.imageView;
+    UIView *startingView = ((PhotoCellView *)self.collectionView.visibleCells.firstObject).imageScrollView.imageView;
     self.transitionController.startingView = startingView;
     self.transitionController.endingView = self.viewModel.parentReference;
 
@@ -170,6 +193,15 @@
             completion();
         }
     }];
+}
+
+#pragma mark - ScrollView delegate
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    PhotosFlowLayout *layout = (PhotosFlowLayout *) self.collectionView.collectionViewLayout;
+    CGFloat pageSide = (layout.scrollDirection == UICollectionViewScrollDirectionHorizontal) ? self.pageSize.width : self.pageSize.height;
+    CGFloat offset = (layout.scrollDirection == UICollectionViewScrollDirectionHorizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y;
+    self.currentPage = (NSInteger)(floor((offset - pageSide / 2) / pageSide) + 1);
 }
 
 @end

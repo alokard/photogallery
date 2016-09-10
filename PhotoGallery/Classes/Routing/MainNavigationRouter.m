@@ -7,6 +7,7 @@
 #import "SearchGalleryViewController.h"
 #import "SearchGalleryViewModel.h"
 #import "SearchAPI.h"
+#import "SuggestionAPI.h"
 #import "ConfigurationProtocol.h"
 #import "PhotoDetailsViewController.h"
 #import "Photo.h"
@@ -57,8 +58,8 @@
     self.searchGalleryViewController = viewController;
 }
 
-- (void)showPhotoDetailsForPhoto:(Photo *)photo itemIndex:(NSInteger)index {
-    PhotoDetailsViewModel *viewModel = [[PhotoDetailsViewModel alloc] initWithRouter:self photo:photo index:index];
+- (void)showPhotoDetailsForPhoto:(Photo *)photo itemIndex:(NSInteger)index inArray:(NSArray<Photo *> *)photos {
+    PhotoDetailsViewModel *viewModel = [[PhotoDetailsViewModel alloc] initWithRouter:self photo:photo index:index inArray:photos];
     PhotoDetailsViewController *photosViewController = [[PhotoDetailsViewController alloc] initWithViewModel:viewModel];
     [self.navigationController presentViewController:photosViewController animated:YES completion:nil];
 }

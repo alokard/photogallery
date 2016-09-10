@@ -9,7 +9,7 @@
 
 @protocol Networking;
 
-@interface SuggestionAPIService : OVCHTTPSessionManager <SuggestionAPI>
+@interface SuggestionAPIService : NSObject <SuggestionAPI>
 
 - (instancetype)initWithNetworking:(id <Networking>)networkingService;
 

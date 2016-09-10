@@ -11,7 +11,7 @@
 
 static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
 
-@interface DefaultCollectionViewDataSource ()
+@interface DefaultTableViewDataSource ()
 
 @property(nonatomic, weak) id <CollectionStorageProtocol> storage;
 
@@ -28,21 +28,22 @@ static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
         [tableView registerClass:cellClass forCellReuseIdentifier:kDefaultCellIdentifier];
         self.storage = storage;
         @weakify(tableView)
+
         self.storage.appendedItems = ^(NSArray *appendedItems) {
             @strongify(tableView);
-            [collectionView performBatchUpdates:^{
-                NSMutableArray *indexPaths = [NSMutableArray new];
-                NSInteger itemIndex = [collectionView numberOfItemsInSection:0];
-                for (id item in appendedItems) {
-                    [indexPaths addObject:[NSIndexPath indexPathForItem:itemIndex inSection:0]];
-                    itemIndex++;
-                }
-                [collectionView insertItemsAtIndexPaths:indexPaths];
-            } completion:nil];
+            [tableView beginUpdates];
+            NSMutableArray *indexPaths = [NSMutableArray new];
+            NSInteger itemIndex = [tableView numberOfRowsInSection:0];
+            for (id item in appendedItems) {
+                [indexPaths addObject:[NSIndexPath indexPathForRow:itemIndex inSection:0]];
+                itemIndex++;
+            }
+            [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
         };
         self.storage.dataReloaded = ^{
-            @strongify(collectionView);
-            [collectionView reloadData];
+            @strongify(tableView);
+            [tableView reloadData];
         };
     }
     return self;

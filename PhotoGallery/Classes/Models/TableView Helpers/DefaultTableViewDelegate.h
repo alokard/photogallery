@@ -7,7 +7,7 @@
 
 @protocol CollectionSelectable;
 
-@interface DefaultCollectionViewDelegate : NSObject <UICollectionViewDelegate>
+@interface DefaultTableViewDelegate : NSObject <UITableViewDelegate>
 
 - (instancetype)initWithViewModel:(id <CollectionSelectable>)viewModel;
 
