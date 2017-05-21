@@ -18,27 +18,57 @@ NSInteger const kFlickrAPIItemsPerPage = 100;
 #pragma mark - Initializers
 
 + (instancetype)serializerWithAPIKey:(NSString *)apiKey {
-    FlickrAPIRequestSerializer *serializer = [self serializer];
+    FlickrAPIRequestSerializer *serializer = [self new];
     serializer.apiKey = apiKey;
     return serializer;
 }
 
-#pragma mark - Overwritten methods
+#pragma mark - Protocol methods
 
-- (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(id)parameters error:(NSError *__nullable __autoreleasing *)error {
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method URL:(NSURL *)url parameters:(NSDictionary *)parameters error:(NSError *__nullable __autoreleasing *)error {
     NSParameterAssert(self.apiKey);
-    if ([parameters isKindOfClass:[NSDictionary class]] && self.apiKey) {
-        NSMutableDictionary *fullParameters = [@{
+    NSMutableDictionary *fullParameters;
+    if (self.apiKey) {
+        fullParameters = [@{
                 @"api_key" : self.apiKey,
                 @"format" : @"json",
                 @"nojsoncallback" : @1,
                 @"per_page" : @(kFlickrAPIItemsPerPage)
         } mutableCopy];
-        [fullParameters addEntriesFromDictionary:(NSDictionary *)parameters];
-        return [super requestWithMethod:method URLString:URLString parameters:fullParameters error:error];
+        [fullParameters addEntriesFromDictionary:parameters];
+    }
+    else {
+        fullParameters = [parameters mutableCopy];
     }
 
-    return [super requestWithMethod:method URLString:URLString parameters:parameters error:error];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    request.HTTPMethod = method;
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    if ([method isEqual:@"GET"]) {
+        NSString *query = [self serializeURIQueryFromDict:fullParameters];
+        if (query.length > 0) {
+            request.URL = [NSURL URLWithString:[[request.URL absoluteString] stringByAppendingFormat:request.URL.query ? @"&%@" : @"?%@", query]];
+        }
+    }
+    else {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:fullParameters options:NSJSONWritingPrettyPrinted error:error];
+        request.HTTPBody = jsonData;
+    }
+
+    return request;
+}
+
+#pragma mark - Private methods
+
+- (NSString *)serializeURIQueryFromDict:(NSMutableDictionary *)dictionary {
+    NSMutableArray *query = [NSMutableArray new];
+    for (NSString *key in dictionary.allKeys) {
+        NSString *value = [dictionary[key] description];
+        value = [value stringByRemovingPercentEncoding];
+        NSString *queryPart = [NSString stringWithFormat:@"%@=%@", [key stringByRemovingPercentEncoding], value];
+        [query addObject:queryPart];
+    }
+    return [query componentsJoinedByString:@"&"];
 }
 
 

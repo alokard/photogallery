@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		581BECD72FA8DB6B580F4D59 /* Pods_PhotoGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 202347B53FBFD77074FB42F6 /* Pods_PhotoGallery.framework */; };
+		B2FA876EF238C949044A96E9 /* FlickrAPIResponseSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA885D0CD86CE46158629E /* FlickrAPIResponseSerializer.m */; };
 		B2FA8F5AE0BA6137685AE53A /* ImageDownloadService.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA86D970069CFF77DDED6B /* ImageDownloadService.m */; };
 		BCE18E3B290B50597C3AEE15 /* Pods_PhotoGalleryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D9F4F2170CD7FA88C9DC659 /* Pods_PhotoGalleryTests.framework */; };
 		D618502294400FDF461EFFBB /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = D6185CEC88910D9FAE79135B /* Tag.m */; };
@@ -90,7 +91,11 @@
 		69A62F0E07842CC0E8B624CD /* Pods-PhotoGallery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoGallery.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoGallery/Pods-PhotoGallery.release.xcconfig"; sourceTree = "<group>"; };
 		B2FA815D75E076581A3DEF56 /* ImageDownloadServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloadServiceProtocol.h; sourceTree = "<group>"; };
 		B2FA8346F0856590494B4A99 /* ImageDownloadService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloadService.h; sourceTree = "<group>"; };
+		B2FA8378B9E7CFE263197321 /* ResponseSerializerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseSerializerProtocol.h; sourceTree = "<group>"; };
 		B2FA86D970069CFF77DDED6B /* ImageDownloadService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloadService.m; sourceTree = "<group>"; };
+		B2FA878E569BD0E79350EEF7 /* RequestSerializerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestSerializerProtocol.h; sourceTree = "<group>"; };
+		B2FA885D0CD86CE46158629E /* FlickrAPIResponseSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrAPIResponseSerializer.m; sourceTree = "<group>"; };
+		B2FA8A0B746BB50BFAB9E2DC /* FlickrAPIResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrAPIResponseSerializer.h; sourceTree = "<group>"; };
 		BB2BB21E636A27D8A7B2EC03 /* Pods-PhotoGalleryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoGalleryTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoGalleryTests/Pods-PhotoGalleryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D6185031AA07C4982F1A7A9A /* ConfigurationKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationKeys.h; sourceTree = "<group>"; };
 		D6185070B71C1EF37F65B02E /* PhotoSearchFlickrAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSearchFlickrAPIResponse.m; sourceTree = "<group>"; };
@@ -233,6 +238,16 @@
 			path = "Image Downloader";
 			sourceTree = "<group>";
 		};
+		B2FA8CDD892BA304674070C6 /* Response Serializer */ = {
+			isa = PBXGroup;
+			children = (
+				B2FA8378B9E7CFE263197321 /* ResponseSerializerProtocol.h */,
+				B2FA885D0CD86CE46158629E /* FlickrAPIResponseSerializer.m */,
+				B2FA8A0B746BB50BFAB9E2DC /* FlickrAPIResponseSerializer.h */,
+			);
+			path = "Response Serializer";
+			sourceTree = "<group>";
+		};
 		D6185044FE63449029249793 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +255,7 @@
 				D61856EBBD8CDC96E0BCCD42 /* NetworkService.h */,
 				D6185E1341B4E1B4830D03B6 /* Request Serializer */,
 				D6185AD4E907304BFF5CB774 /* Networking.h */,
+				B2FA8CDD892BA304674070C6 /* Response Serializer */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -556,6 +572,7 @@
 			children = (
 				D6185FC13CF3EFBD92F3A97A /* FlickrAPIRequestSerializer.m */,
 				D618597C2D87DAB5C3967850 /* FlickrAPIRequestSerializer.h */,
+				B2FA878E569BD0E79350EEF7 /* RequestSerializerProtocol.h */,
 			);
 			path = "Request Serializer";
 			sourceTree = "<group>";
@@ -926,6 +943,7 @@
 				D618525A824FCA0064B6592B /* PhotosFlowLayout.m in Sources */,
 				D618577B757DDF2434EEF028 /* PhotoCellView.m in Sources */,
 				B2FA8F5AE0BA6137685AE53A /* ImageDownloadService.m in Sources */,
+				B2FA876EF238C949044A96E9 /* FlickrAPIResponseSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

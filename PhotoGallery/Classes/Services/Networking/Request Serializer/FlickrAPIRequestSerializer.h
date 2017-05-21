@@ -4,11 +4,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AFNetworking/AFURLRequestSerialization.h>
+#import "RequestSerializerProtocol.h"
 
 extern NSInteger const kFlickrAPIItemsPerPage;
 
-@interface FlickrAPIRequestSerializer : AFJSONRequestSerializer
+@interface FlickrAPIRequestSerializer : NSObject <RequestSerializerProtocol>
 
 + (instancetype)serializerWithAPIKey:(NSString *)apiKey;
 

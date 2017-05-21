@@ -3,12 +3,13 @@
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
+#import <ReactiveCocoa/RACSignal.h>
+#import <Mantle/MTLModel.h>
+#import <Mantle/MTLJSONAdapter.h>
 #import "SuggestionAPIService.h"
 #import "Networking.h"
 #import "NetworkService.h"
 #import "SuggestionTagResponse.h"
-#import "RACSignal.h"
-#import "OVCResponse.h"
 
 
 @interface SuggestionAPIService ()
@@ -42,8 +43,8 @@
             @"tag"      : suggestionText
     };
 
-    return [[self.networkService rac_GET:@"" parameters:params] map:^id(OVCResponse *response) {
-        NSDictionary *responseDict = response.result;
+    return [[self.networkService rac_GET:@"" parameters:params] map:^id(id response) {
+        NSDictionary *responseDict = response;
         NSError *error = nil;
         SuggestionTagResponse *result = [MTLJSONAdapter modelOfClass:[SuggestionTagResponse class]
                                                   fromJSONDictionary:responseDict[@"tags"]

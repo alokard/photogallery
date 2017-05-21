@@ -34,7 +34,7 @@
     [RACObserve(self, searchText) subscribeNext:^(NSString *search) {
         @strongify(self);
         [self.cancelTagRequestSubject sendNext:@YES];
-        [[[self.suggestionService loadSuggestionsForText:search] takeUntil:self.cancelTagRequestSubject] subscribeNext:^(SuggestionTagResponse *response) {
+        [[[[self.suggestionService loadSuggestionsForText:search] takeUntil:self.cancelTagRequestSubject] deliverOnMainThread] subscribeNext:^(SuggestionTagResponse *response) {
             @strongify(self);
             [self updateStorageWithResponse:response];
         }];

@@ -61,7 +61,7 @@
 
 - (RACSignal *)reloadSignal {
     @weakify(self);
-    return [[[self.searchService searchPhotosWithText:self.searchText tagsOnly:NO] doNext:^(PhotoSearchFlickrAPIResponse *response) {
+    return [[[[self.searchService searchPhotosWithText:self.searchText tagsOnly:NO] deliverOnMainThread] doNext:^(PhotoSearchFlickrAPIResponse *response) {
         @strongify(self);
         self.response = response;
         [self updateStorageWithPhotos:response.photos];

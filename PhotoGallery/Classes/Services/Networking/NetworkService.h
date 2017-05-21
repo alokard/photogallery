@@ -4,13 +4,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Overcoat/OVCHTTPSessionManager+ReactiveCocoa.h>
 #import "Networking.h"
 
 @protocol ConfigurationProtocol;
 
 
-@interface NetworkService : OVCHTTPSessionManager <Networking>
+@interface NetworkService : NSObject <Networking>
 
 + (instancetype)defaultNetworkService;
 

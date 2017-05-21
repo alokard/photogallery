@@ -3,7 +3,6 @@
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
-#import <Overcoat/OVCHTTPSessionManager.h>
 #import "SearchAPI.h"
 
 @protocol ConfigurationProtocol;

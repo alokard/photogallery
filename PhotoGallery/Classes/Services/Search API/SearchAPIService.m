@@ -9,7 +9,6 @@
 #import "FlickrAPIErrorResponse.h"
 #import "Networking.h"
 #import "PhotoSearchFlickrAPIResponse.h"
-#import "Overcoat.h"
 #import "NetworkService.h"
 
 @interface SearchAPIService ()
@@ -44,8 +43,8 @@
             @"text"     : searchText,
             @"method"   : @"flickr.photos.search"
     };
-    return [[self.networkService rac_GET:@"" parameters:params] map:^id(OVCResponse *response) {
-        NSDictionary *responseDict = response.result;
+    return [[self.networkService rac_GET:@"" parameters:params] map:^id(id response) {
+        NSDictionary *responseDict = response;
         NSError *error = nil;
         PhotoSearchFlickrAPIResponse *result = [MTLJSONAdapter modelOfClass:[PhotoSearchFlickrAPIResponse class]
                                                          fromJSONDictionary:responseDict[@"photos"]

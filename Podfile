@@ -4,7 +4,8 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'PhotoGallery' do
-	pod 'Overcoat/ReactiveCocoa'
+	pod 'ReactiveCocoa', '~>2.5'
+	pod 'Mantle', '~>2.0'
 
 	pod 'Masonry'
 
