@@ -3,6 +3,8 @@
 // Copyright (c) 2016 Tulusha.com. All rights reserved.
 //
 
+#import <Masonry/MASConstraintMaker.h>
+#import <Masonry/View+MASAdditions.h>
 #import "PhotoDetailsViewController.h"
 #import "ImageScrollView.h"
 #import "View+MASAdditions.h"
@@ -100,6 +102,10 @@
         pageSize.height += layout.minimumLineSpacing;
     }
     self.pageSize = pageSize;
+
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.viewModel.parentIndex inSection:0]
+                                atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                        animated:NO];
 }
 
 - (void)setupAccessoriesView {
@@ -199,9 +205,10 @@
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     PhotosFlowLayout *layout = (PhotosFlowLayout *) self.collectionView.collectionViewLayout;
-    CGFloat pageSide = (layout.scrollDirection == UICollectionViewScrollDirectionHorizontal) ? self.pageSize.width : self.pageSize.height;
-    CGFloat offset = (layout.scrollDirection == UICollectionViewScrollDirectionHorizontal) ? scrollView.contentOffset.x : scrollView.contentOffset.y;
-    self.currentPage = (NSInteger)(floor((offset - pageSide / 2) / pageSide) + 1);
+    CGFloat pageSide = layout.itemSize.width + 2 * layout.minimumInteritemSpacing;
+    CGFloat offset = scrollView.contentOffset.x;
+    self.currentPage = (NSUInteger)((offset + pageSide / 2) / pageSide);
+    [self.viewModel updateWithPageIndex:self.currentPage];
 }
 
 @end

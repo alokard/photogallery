@@ -4,14 +4,17 @@
 //
 
 #import "PhotoViewCollectionCell.h"
-#import "View+MASAdditions.h"
 #import "PhotoCellViewModel.h"
-#import "PINImageView+PINRemoteImage.h"
+#import <ReactiveCocoa/RACEXTScope.h>
+
+#import <Masonry/View+MASAdditions.h>
 
 @interface PhotoViewCollectionCell ()
 
 @property (nonatomic, strong) UIImageView *maskImage;
 @property (nonatomic, strong) UIImageView *imageView;
+
+@property (nonatomic, weak) PhotoCellViewModel *viewModel;
 
 @end
 
@@ -39,13 +42,20 @@
 }
 
 - (void)prepareForReuse {
-    [self.imageView pin_cancelImageDownload];
-    self.imageView.image = nil;
+    if (self.viewModel) {
+        [self.viewModel cancelPhotoDownload];
+        self.viewModel = nil;
+    }
 }
 
 - (void)updateWithViewModel:(PhotoCellViewModel *)model {
     NSParameterAssert([model isKindOfClass:[PhotoCellViewModel class]]);
-    [self.imageView pin_setImageFromURL:model.photoURL];
+    self.viewModel = model;
+    @weakify(self);
+    [model getPhotoWithCompletion:^(UIImage *image) {
+        @strongify(self);
+        self.imageView.image = image;
+    }];
 }
 
 @end

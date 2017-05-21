@@ -14,4 +14,7 @@
 
 - (instancetype)initWithPhoto:(Photo *)photo;
 
+- (void)getPhotoWithCompletion:(void(^)(id image))completion;
+- (void)cancelPhotoDownload;
+
 @end

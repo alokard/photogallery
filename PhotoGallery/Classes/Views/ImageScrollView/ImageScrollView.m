@@ -7,12 +7,17 @@
 //
 
 #import "ImageScrollView.h"
-#import "PINImageView+PINRemoteImage.h"
+#import "ImageDownloadServiceProtocol.h"
+#import "ImageDownloadService.h"
+
+#import <ReactiveCocoa/RACEXTScope.h>
 
 @interface ImageScrollView () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIView *loadingView;
+
+@property (nonatomic, strong) id <ImageDownloadServiceProtocol> imageDownloadService;
 
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTapGestureRecognizer;
 
@@ -40,6 +45,7 @@
     [self setupScrollView];
     [self setupGestureRecognizers];
     self.delegate = self;
+    self.imageDownloadService = [ImageDownloadService sharedService];
 }
 
 - (void)setFrame:(CGRect)frame {
@@ -50,11 +56,14 @@
 
 - (void)setImageWithURL:(NSURL *)imageURL placeholder:(UIImage *)placeholder {
     [self updateWithImage:placeholder];
-    [self.imageView pin_setImageFromURL:imageURL
-                       placeholderImage:placeholder
-                             completion:^(PINRemoteImageManagerResult *result) {
-                                 [self updateWithImage:result.image];
-                             }];
+    @weakify(self);
+    [self.imageDownloadService loadImageFromURL:imageURL
+                                completionBlock:^(BOOL success, UIImage *image, NSError *error) {
+                                    if (image) {
+                                        @strongify(self);
+                                        [self updateWithImage:image];
+                                    }
+                                }];
 }
 
 #pragma mark - Setup helpers

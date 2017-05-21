@@ -10,7 +10,6 @@ PODS:
   - AFNetworking/Reachability (2.6.3)
   - AFNetworking/Security (2.6.3)
   - AFNetworking/Serialization (2.6.3)
-  - FLAnimatedImage (1.0.12)
   - Kiwi (2.4.0)
   - Mantle (2.0.7):
     - Mantle/extobjc (= 2.0.7)
@@ -48,14 +47,6 @@ PODS:
   - Overcoat/ReactiveCocoa/NSURLSession (3.2.1):
     - Overcoat/NSURLSession
     - ReactiveCocoa (~> 2.4)
-  - PINCache (2.2.2)
-  - PINRemoteImage (2.1.4):
-    - PINRemoteImage/FLAnimatedImage (= 2.1.4)
-  - PINRemoteImage/Core (2.1.4):
-    - PINCache (>= 2.1)
-  - PINRemoteImage/FLAnimatedImage (2.1.4):
-    - FLAnimatedImage (>= 1.0)
-    - PINRemoteImage/Core
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -69,18 +60,16 @@ DEPENDENCIES:
   - Masonry
   - OHHTTPStubs
   - Overcoat/ReactiveCocoa
-  - PINRemoteImage
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
   Masonry: a1a931a0d08870ed8ae415a2ea5ea68ebcac77df
   OHHTTPStubs: 592f74439d2d72615115cf99a954237a3fbe26e5
   Overcoat: ce2bd0bfee6e300839cb244799c9e1e1aa70c06a
-  PINCache: 078426d356ab95ef875e9e62e5c35a2ea3333c28
-  PINRemoteImage: 4ac4011c5caefd6befd99758e09becede05d3226
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 58245dc447c1125443ffafdbe3f32b8434462a0c
+
+COCOAPODS: 1.2.1

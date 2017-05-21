@@ -7,9 +7,10 @@
 //
 
 #import <Masonry/MASConstraintMaker.h>
+#import <Masonry/View+MASAdditions.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 #import "PhotoAccessoriesView.h"
-#import "View+MASAdditions.h"
-#import "PhotoDetailsViewModel.h"
 #import "PhotoDetailsViewModel.h"
 
 @interface PhotoAccessoriesView ()
@@ -59,7 +60,8 @@
 }
 
 - (void)updateWithViewModel:(PhotoDetailsViewModel *)viewModel {
-    self.titleTextView.text = viewModel.title;
+    RAC(self.titleTextView, text) = RACObserve(viewModel, title);
+    self.doneButton.rac_command = viewModel.doneCommand;
     [self layoutIfNeeded];
 }
 

@@ -14,8 +14,7 @@
 #import "SearchGalleryViewModel.h"
 #import "PhotoViewCollectionCell.h"
 
-#import "RACCommand.h"
-#import "UIRefreshControl+RACCommandSupport.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIColor+PhotoGallery.h"
 #import "UICollectionView+EmptyState.h"
 #import "SuggestionTagViewModel.h"

@@ -4,7 +4,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OVCHTTPSessionManager.h"
 #import "SuggestionAPI.h"
 
 @protocol Networking;

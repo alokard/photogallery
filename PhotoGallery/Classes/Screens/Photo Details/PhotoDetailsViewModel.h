@@ -24,8 +24,9 @@
 
 @property (nonatomic, readonly) RACCommand *doneCommand;
 
-- (instancetype)initWithRouter:(id <MainRouting>)router photo:(Photo *)photo index:(NSInteger)index inArray:(NSArray<Photo *> *)photos;
+- (instancetype)initWithRouter:(id <MainRouting>)router index:(NSInteger)index inArray:(NSArray<Photo *> *)photos;
 
+- (void)updateWithPageIndex:(NSInteger)index;
 - (id)parentReference;
 
 @end

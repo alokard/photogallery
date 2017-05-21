@@ -22,7 +22,8 @@ static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView
                              cellClass:(Class<DefaultCellProtocol>)cellClass
                                storage:(id<CollectionStorageProtocol>)storage {
-    NSAssert([cellClass conformsToProtocol:@protocol(DefaultCellProtocol)], @"Cell class shoudl confirm to DefaultCellProtocol");
+    
+    NSAssert([cellClass.self conformsToProtocol:@protocol(DefaultCellProtocol)], @"Cell class should confirm to DefaultCellProtocol");
     if (self = [super init]) {
         collectionView.dataSource = self;
         [collectionView registerClass:cellClass forCellWithReuseIdentifier:kDefaultCellIdentifier];
@@ -33,7 +34,7 @@ static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
             [collectionView performBatchUpdates:^{
                 NSMutableArray *indexPaths = [NSMutableArray new];
                 NSInteger itemIndex = [collectionView numberOfItemsInSection:0];
-                for (id item in appendedItems) {
+                for (id __unused item in appendedItems) {
                     [indexPaths addObject:[NSIndexPath indexPathForItem:itemIndex inSection:0]];
                     itemIndex++;
                 }

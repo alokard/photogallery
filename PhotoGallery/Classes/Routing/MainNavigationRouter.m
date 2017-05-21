@@ -58,8 +58,8 @@
     self.searchGalleryViewController = viewController;
 }
 
-- (void)showPhotoDetailsForPhoto:(Photo *)photo itemIndex:(NSInteger)index inArray:(NSArray<Photo *> *)photos {
-    PhotoDetailsViewModel *viewModel = [[PhotoDetailsViewModel alloc] initWithRouter:self photo:photo index:index inArray:photos];
+- (void)showPhotoDetailsForPhotoAtIndex:(NSInteger)index inArray:(NSArray<Photo *> *)photos {
+    PhotoDetailsViewModel *viewModel = [[PhotoDetailsViewModel alloc] initWithRouter:self index:index inArray:photos];
     PhotoDetailsViewController *photosViewController = [[PhotoDetailsViewController alloc] initWithViewModel:viewModel];
     [self.navigationController presentViewController:photosViewController animated:YES completion:nil];
 }
